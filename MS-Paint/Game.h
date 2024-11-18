@@ -6,6 +6,7 @@ class Game
 private:
 	int resX;
 	int resY;
+    int action;
 	std::string windowName = "Template";
 	sf::RenderWindow window;
 	sf::Event event;
@@ -30,10 +31,25 @@ public:
 		background.setTexture(backgroundT);
 	}
 
+    //cursor functions
+
+    //draw
+    void draw() {
+        int i = 0;
+        // "spawns" a pixel object every frame (drawing pixel object to screen)
+        float size = 5;
+        sf::CircleShape ink(size);
+        ink.setFillColor(sf::Color::Green);
+        sf::Vector2i cursorPos = sf::Mouse::getPosition(window);
+        ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
+        inkDots.push_back(ink); // Store the ink object in the vector
+        i++;
+        std::cout << "ink#" << i << " pos: " << ink.getPosition().x << "," << ink.getPosition().y << std::endl;
+        // Draw all the ink objects
+        
+    }
 
     void runGame() {
-        int i = 0;
-
         while (window.isOpen()) {
             deltaTime = clock.restart();
             while (window.pollEvent(event)) {
@@ -43,28 +59,20 @@ public:
             }
 
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                // "spawns" a pixel object every frame (drawing pixel object to screen)
-                float size = 5;
-                sf::CircleShape ink(size);
-                ink.setFillColor(sf::Color::Green);
-                sf::Vector2i cursorPos = sf::Mouse::getPosition(window);
-                ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
-                inkDots.push_back(ink); // Store the ink object in the vector
-                i++;
-                std::cout << "ink#" << i << " pos: " << ink.getPosition().x << "," << ink.getPosition().y << std::endl;
+                //mouse functions:
+                //Draw:
+                draw();
+
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
                 inkDots.clear(); // Clear the vector of ink objects
                 window.clear();
-                i = 0;
                 system("cls");
             }
 
-           // window.clear(); // Clear the window before drawing
             window.draw(background); // Draw the background
 
-            // Draw all the ink objects
             for (const auto& ink : inkDots) {
                 window.draw(ink);
             }
