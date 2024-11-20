@@ -7,6 +7,7 @@ private:
 	int resX;
 	int resY;
     int action;
+
 	std::string windowName = "Template";
 	sf::RenderWindow window;
 	sf::Event event;
@@ -23,6 +24,8 @@ private:
 	std::vector<sf::CircleShape> inkDots;
 
 public:
+    sf::Vector2i  cursorPos = sf::Mouse::getPosition(window);
+
 
 	Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowName) {
 		if (!backgroundT.loadFromFile(backgroundFileLoc)) {
@@ -33,7 +36,7 @@ public:
 
     //cursor functions
 
-    //draw
+    /*draw
     void draw() {
         int i = 0;
         // "spawns" a pixel object every frame (drawing pixel object to screen)
@@ -48,6 +51,7 @@ public:
         // Draw all the ink objects
         
     }
+    */
 
     void runGame() {
         while (window.isOpen()) {
@@ -61,7 +65,7 @@ public:
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                 //mouse functions:
                 //Draw:
-                draw();
+                //draw();
 
             }
 
@@ -73,9 +77,10 @@ public:
 
             window.draw(background); // Draw the background
 
+            /*
             for (const auto& ink : inkDots) {
                 window.draw(ink);
-            }
+            }*/
 
             window.display(); // Display the drawn frame
         }

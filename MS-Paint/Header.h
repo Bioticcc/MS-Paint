@@ -18,6 +18,7 @@
 #include <stdexcept>  
 #include <fstream>
 #include <sstream>
+#include <functional>
 
 using std::ifstream;
 using std::ofstream;
