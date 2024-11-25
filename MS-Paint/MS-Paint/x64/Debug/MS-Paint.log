@@ -1,5 +1,40 @@
-﻿  Button.cpp
-  Game.cpp
+﻿  Game.cpp
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         with
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:             T=unsigned int
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         ]
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         and
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:             T=float
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         ]
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         with
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:             T=unsigned int
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         ]
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         and
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:             T=float
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         ]
   main.cpp
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         with
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:             T=unsigned int
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         ]
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         and
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:             T=float
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,73): warning C4244:         ]
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         with
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:             T=unsigned int
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         ]
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         and
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         [
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:             T=float
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Button.h(27,52): warning C4244:         ]
   Generating Code...
   MS-Paint.vcxproj -> C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\x64\Debug\MS-Paint.exe
