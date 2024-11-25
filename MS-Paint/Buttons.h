@@ -1,5 +1,6 @@
 #pragma once
 #include "Button.h"
+#include "Tools.h"
 class Buttons : private Button
 {
 private:
@@ -19,14 +20,14 @@ public:
 
 	void selectButton() {
 		cout << "select pressed!\n";
+		//this is where we would call the select tool.
 	}
 
 	void pencilButton() {
 		cout << "pencil pressed!\n";
-		
-		std::vector<sf::CircleShape> inkDots;
-
+		//this is where we would call the tools->brushes->pencil object
 		/*
+		std::vector<sf::CircleShape> inkDots;
 		for (const auto& ink : inkDots) {
 			window.draw(ink);
 		}*
@@ -49,17 +50,12 @@ public:
 	   */
 	}
 
-	void testButton() {
-		cout << "test";
-	}
 
 	void buttonConstructor() {
 		textureS.loadFromFile("Buttons/select.png");
 		textureP.loadFromFile("Buttons/pencil.png");
-		//textureTest.loadFromFile("Buttons/test.jpg");
 		select = Button(textureS, 22.0f, 18.0f, [this]() { selectButton(); });
 		pencil = Button(textureP, 300.0f, 18.0f, [this]() { pencilButton(); });
-		//test = Button(textureTest, 100.0f, 18.0f, [this]() {testButton(); });
 
 	
     buttonVect.push_back(select);
@@ -74,12 +70,10 @@ public:
 
 	void drawButtons(sf::RenderWindow& window) {
 		
-		// doesnt work for some reason, fuck if i know why lmao
 		
 		
 		window.draw(select.getIcon());
 		window.draw(pencil.getIcon());
-		//window.draw(test.getIcon());
 
 	}
 

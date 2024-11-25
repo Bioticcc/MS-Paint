@@ -17,7 +17,7 @@ private:
     sf::Clock clock;
     sf::Time deltaTime;
     sf::CircleShape ink;
-
+    int currentTool;
     Buttons allButtons;
 
 public:
@@ -50,10 +50,12 @@ public:
 
                 if (allButtons.select.isHovering(cursorPos)) {
                     allButtons.select.buttonFunction();
+                    currentTool = 1;
                 }
 
                 if (allButtons.pencil.isHovering(cursorPos)) {
                     allButtons.pencil.buttonFunction();
+                    currentTool = 2;
                 }
             }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
