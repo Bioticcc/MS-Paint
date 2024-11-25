@@ -47,12 +47,8 @@ public:
 
             sf::Vector2i cursorPos = sf::Mouse::getPosition(window);
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-               // cout << "mouse pos (x,y): " << cursorPos.x << "," << cursorPos.y << std::endl;
-                // Handle mouse click events (optional)
-
-                //this is if the mouse is clicking a button! 
-               
-                if (!buttonHasBeenPressed) {//IDEA FOR IMPROVEMENT: Make this a loop that goes through the vector of Button objects in allButtons, rather then a bunch of if statements!
+                //cout << "mouse pos (x,y): " << cursorPos.x << "," << cursorPos.y << std::endl;
+                if (!buttonHasBeenPressed) {
                     if (allButtons.select.isHovering(cursorPos)) {
                         cout << "select pressed\n";
                         currentTool = 1;
@@ -70,39 +66,38 @@ public:
                         currentTool = 3;
                         buttonHasBeenPressed = true;
                     }
+
+                    else if (allButtons.clear.isHovering(cursorPos)) {
+                        cout << "clear pressed\n";
+                        allButtons.clear.buttonFunction();
+                        buttonHasBeenPressed = true;
+                    }
+
+                    else if (allButtons.save.isHovering(cursorPos)) {
+                        cout << "save pressed\n";
+                        allButtons.save.buttonFunction();
+                        buttonHasBeenPressed = true;
+                    }
                 }
-                //if the mouse is NOT clicking a button, and is hovering the drawing space, we do the functions the button provides. (with the exception of the select button, witch works EVERYWHERE!
                 if (cursorPos.x > 425.0f) {
-                    //we are in the draw screen! time for some drawing to occur with our given tool!
                     switch (currentTool) {
-                    case 1: 
+                    case 1:
                         allButtons.select.buttonFunction();
                         break;
-                        //select tool, as of now nothing happens. Just means we aint doin DIDDLY to the screen
                     case 2:
-                        //pencil tool! now we will call the pencil tools function, draw! 
-                         allButtons.pencil.buttonFunction();
-                         break;
+                        allButtons.pencil.buttonFunction();
+                        break;
                     case 3:
                         allButtons.eraser.buttonFunction();
                         break;
-
                     }
                 }
             }
                 
-
             // Rendering
             window.clear();
             window.draw(background);
             allButtons.drawButtons();
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-                allButtons.inkDotsP1.clear();
-
-                system("cls");
-            }
-
             window.display();
         }
 

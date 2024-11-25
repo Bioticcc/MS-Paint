@@ -19,6 +19,7 @@
 #include <fstream>
 #include <sstream>
 #include <functional>
+#include <filesystem>
 
 using std::ifstream;
 using std::ofstream;
