@@ -4,7 +4,7 @@
 // Before release, switch all SFML files from xxx-s-d.lib to xxx-s.lib
 
 #define SOL_ALL_SAFTIES_ON 1
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -20,6 +20,7 @@
 #include <sstream>
 #include <functional>
 #include <filesystem>
+#include <ctime>
 
 using std::ifstream;
 using std::ofstream;

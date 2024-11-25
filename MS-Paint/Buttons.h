@@ -84,7 +84,11 @@ public:
 		screenshotTexture.create(window->getSize().x, window->getSize().y);
 		screenshotTexture.update(*window);
 		sf::Image screenshot = screenshotTexture.copyToImage();
-		screenshot.saveToFile("SavedDrawings/image1");
+		std::time_t now = std::time(nullptr);
+		char timestamp[20];
+		std::strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", std::localtime(&now));
+		std::string filename = "SavedDrawings/drawing_" + std::string(timestamp) + ".png";
+		screenshot.saveToFile(filename);
 	}
 
 	void buttonConstructor() {
