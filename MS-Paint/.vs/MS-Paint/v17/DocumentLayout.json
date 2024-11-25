@@ -53,7 +53,7 @@
               "RelativeDocumentMoniker": "Game.h",
               "ToolTip": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.h",
               "RelativeToolTip": "Game.h",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAAEgAAAA0AAAA",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAHUAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-25T06:46:20.23Z",
               "IsPinned": true,
@@ -67,7 +67,7 @@
               "RelativeDocumentMoniker": "Buttons.h",
               "ToolTip": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Buttons.h",
               "RelativeToolTip": "Buttons.h",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAFsAAAACAAAA",
+              "ViewState": "AQIAADcAAAAAAAAAAAAUwEwAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-24T10:14:28.515Z",
               "EditorCaption": ""
@@ -82,8 +82,7 @@
               "RelativeToolTip": "Button.h",
               "ViewState": "AQIAAE0AAAAAAAAAAAAUwGoAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-19T23:30:53.846Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T23:30:53.846Z"
             },
             {
               "$type": "Document",
@@ -95,8 +94,7 @@
               "RelativeToolTip": "Header.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-16T23:55:12.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-16T23:55:12.105Z"
             }
           ]
         }

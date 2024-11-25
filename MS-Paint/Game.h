@@ -47,7 +47,7 @@ public:
 
             sf::Vector2i cursorPos = sf::Mouse::getPosition(window);
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                //cout << "mouse pos (x,y): " << cursorPos.x << "," << cursorPos.y << std::endl;
+                cout << "mouse pos (x,y): " << cursorPos.x << "," << cursorPos.y << std::endl;
                 if (!buttonHasBeenPressed) {
                     if (allButtons.select.isHovering(cursorPos)) {
                         cout << "select pressed\n";
@@ -78,6 +78,24 @@ public:
                         allButtons.save.buttonFunction();
                         buttonHasBeenPressed = true;
                     }
+
+                    else if (allButtons.pencilR.isHovering(cursorPos)) {
+                        cout << "pencil RED pressed\n";
+                        currentTool = 4;
+                        buttonHasBeenPressed = true;
+                    }
+
+                    else if (allButtons.pencilB.isHovering(cursorPos)) {
+                        cout << "pencil BLUE pressed\n";
+                        currentTool = 5;
+                        buttonHasBeenPressed = true;
+                    }
+
+                    else if (allButtons.pencilG.isHovering(cursorPos)) {
+                        cout << "pencil GREEN pressed\n";
+                        currentTool = 6;
+                        buttonHasBeenPressed = true;
+                    }
                 }
                 if (cursorPos.x > 425.0f) {
                     switch (currentTool) {
@@ -90,7 +108,17 @@ public:
                     case 3:
                         allButtons.eraser.buttonFunction();
                         break;
+                    case 4:
+                        allButtons.pencilR.buttonFunction();
+                        break;
+                    case 5:
+                        allButtons.pencilB.buttonFunction();
+                        break;
+                    case 6:
+                        allButtons.pencilG.buttonFunction();
+                        break;
                     }
+                   
                 }
             }
                 
