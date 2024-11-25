@@ -9,8 +9,9 @@ private:
 
 	//button position on screen
 	float posX, posY;
+	sf::Vector2f size;
 
-
+	bool clicked;
 
 public:
 	std::function<void()> buttonFunction;
@@ -22,13 +23,17 @@ public:
 	}
 	//constructor
 	
-	Button(sf::Texture& texture, float X, float Y, std::function<void()> functionPtr) {
+	Button(sf::Texture& texture, float X, float Y, std::function<void()> functionPtr, float sizeX, float sizeY) {
 		buttonIcon.setTexture(&texture);
-		buttonIcon.setSize(sf::Vector2f(texture.getSize().x, texture.getSize().y));
+		//buttonIcon.setSize(sf::Vector2f(texture.getSize().x, texture.getSize().y));
+		size.x = sizeX;
+		size.y = sizeY;
+		buttonIcon.setSize(size);
 		buttonIcon.setPosition(X, Y);
 		posX = X;
 		posY = Y;
 		buttonFunction = functionPtr;
+		clicked = false;
 	}
 	/*
 	Button(const std::string& textureFilePath, float X, float Y, std::function<void()> functionPtr) {
@@ -89,13 +94,17 @@ public:
 	bool isPressed(const sf::Vector2i& cursorPos) {
 		if (isHovering(cursorPos)) {
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-				//button has been pressed! if this returns true, we call the buttons function in the Buttons class!
-				
-				cout << "button pressed!\n";
-				return true;
+				if (!clicked) { // Check if the button is not already clicked
+					clicked = true; // Mark as clicked
+					cout << "button pressed!\n";
+					return true;
+				}
 			}
-			else return false;
+			else {
+				clicked = false; // Reset on mouse release
+			}
 		}
+		return false;
 	}
 
 	void draw(sf::RenderWindow& window) {
