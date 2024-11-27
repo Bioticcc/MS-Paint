@@ -12,7 +12,9 @@ private:
 	sf::Texture texturePR;
 	sf::Texture texturePB;
 	sf::Texture texturePG;
-
+	sf::Texture texturePLUS;
+	sf::Texture textureMINUS;
+	float size;
 public:
 	sf::RenderWindow* window;
 	vector<sf::CircleShape> inkDots;
@@ -27,10 +29,14 @@ public:
 	Button pencilR;
 	Button pencilB;
 	Button pencilG;
+	Button increase;
+	Button decrease;
+
 
 	//constructor
 	Buttons(sf::RenderWindow* renderWindow) : window(renderWindow) {
 		std::cout << "Buttons created!\n";
+		size = 5;
 	}
 
 	//since I seem to need it so damn much im making a function that gets me the RenderWindow ob
@@ -45,7 +51,6 @@ public:
 		cout << "DRAWING WITH PENCIL!\n";
 
 		//this should go in the Pencil Tool object eventually
-		float size = 5;
 		sf::CircleShape ink(size);
 		ink.setFillColor(sf::Color::Black);
 		sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
@@ -62,7 +67,6 @@ public:
 
 
 		cout << "ERASING!\n";
-		float size = 5;
 		sf::CircleShape ink(size);
 		sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
 		ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
@@ -99,7 +103,6 @@ public:
 	}
 
 	void pencilButtonR() {
-		float size = 5;
 		sf::CircleShape ink(size);
 		ink.setFillColor(sf::Color::Red);
 		sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
@@ -108,7 +111,6 @@ public:
 	}
 
 	void pencilButtonB() {
-		float size = 5;
 		sf::CircleShape ink(size);
 		ink.setFillColor(sf::Color::Blue);
 		sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
@@ -117,13 +119,22 @@ public:
 	}
 
 	void pencilButtonG() {
-		float size = 5;
 		sf::CircleShape ink(size);
 		ink.setFillColor(sf::Color::Green);
 		sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
 		ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
 		inkDots.push_back(ink);
 	}
+
+	void increaseSize() {
+		size += 5;
+	}
+	void decreaseSize() {
+		if (size > 5) { size -= 5; }
+
+	}
+
+
 
 	void buttonConstructor() {
 		textureS.loadFromFile("Buttons/select1.png");
@@ -134,7 +145,8 @@ public:
 		texturePR.loadFromFile("Buttons/pencilR.png");
 		texturePB.loadFromFile("Buttons/pencilB.png");
 		texturePG.loadFromFile("Buttons/pencilG.png");
-
+		texturePLUS.loadFromFile("Buttons/increase.png");
+		textureMINUS.loadFromFile("Buttons/decrease.png");
 
 
 		select = Button(textureS, 16.0f, 13.0f, [this]() { selectButton(); }, 115.0f, 115.0f);
@@ -145,6 +157,9 @@ public:
 		pencilR = Button(texturePR, 218.0f, 150.0f, [this]() {pencilButtonR(); }, 115.0f, 115.0f);
 		pencilB = Button(texturePB, 218.0f, 282.0f, [this]() {pencilButtonB(); }, 115.0f, 115.0f);
 		pencilG = Button(texturePG, 218.0f, 415.0f, [this]() {pencilButtonG(); }, 115.0f, 115.0f);
+		increase = Button(texturePLUS, 14.0f, 280.0f, [this]() {increaseSize(); }, 115.0f, 115.0f);
+		decrease = Button(textureMINUS, 14.0f, 414.0f, [this]() {decreaseSize(); }, 115.0f, 115.0f);
+
 
 		buttonVect.push_back(select);
 		buttonVect.push_back(pencil);
@@ -154,7 +169,8 @@ public:
 		buttonVect.push_back(pencilR);
 		buttonVect.push_back(pencilB);
 		buttonVect.push_back(pencilG);
-
+		buttonVect.push_back(increase);
+		buttonVect.push_back(decrease);
 
 		std::cout << "Number of buttons: " << buttonVect.size() << "\n";
 
@@ -172,6 +188,8 @@ public:
 		window->draw(pencilR.getIcon());
 		window->draw(pencilB.getIcon());
 		window->draw(pencilG.getIcon());
+		window->draw(increase.getIcon());
+		window->draw(decrease.getIcon());
 
 
 		for (const auto& ink : inkDots) {

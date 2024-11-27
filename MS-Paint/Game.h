@@ -21,7 +21,7 @@ private:
     Buttons allButtons;
     bool drawMode;
     bool buttonHasBeenPressed;
-
+    int framesSinceSizeIncrease;
 public:
 
 
@@ -31,12 +31,14 @@ public:
         }
         background.setTexture(backgroundT);
         allButtons.buttonConstructor(); // Initialize buttons in the constructor
+        framesSinceSizeIncrease = 30;
     }
 
 
 
     void runGame() {
         //currentTool = 1; //by default our starting tool will be 1 (select, ie standard cursor)
+        bool wasMousePressed = false;
         while (window.isOpen()) {
             buttonHasBeenPressed = false;
             while (window.pollEvent(event)) {
@@ -46,7 +48,7 @@ public:
             }
 
             sf::Vector2i cursorPos = sf::Mouse::getPosition(window);
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !wasMousePressed) {
                 cout << "mouse pos (x,y): " << cursorPos.x << "," << cursorPos.y << std::endl;
                 if (!buttonHasBeenPressed) {
                     if (allButtons.select.isHovering(cursorPos)) {
@@ -96,7 +98,24 @@ public:
                         currentTool = 6;
                         buttonHasBeenPressed = true;
                     }
+
+                    else if (allButtons.increase.isHovering(cursorPos) && framesSinceSizeIncrease >= 30) {
+                        cout << "INCREASE INKN SIZE pressed";
+                        allButtons.increase.buttonFunction();
+                        framesSinceSizeIncrease = 0;
+                    }
+
+                    else if (allButtons.decrease.isHovering(cursorPos) && framesSinceSizeIncrease >= 30) {
+                        cout << "DECREASE INKN SIZE pressed";
+                        allButtons.decrease.buttonFunction();
+                        framesSinceSizeIncrease = 0;
+                    }
+
+
                 }
+   
+            }
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
                 if (cursorPos.x > 425.0f) {
                     switch (currentTool) {
                     case 1:
@@ -118,10 +137,10 @@ public:
                         allButtons.pencilG.buttonFunction();
                         break;
                     }
-                   
                 }
             }
-                
+            wasMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+            framesSinceSizeIncrease++;
             // Rendering
             window.clear();
             window.draw(background);
