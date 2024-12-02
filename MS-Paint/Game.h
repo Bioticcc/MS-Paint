@@ -6,7 +6,8 @@
 #include <iostream>  
 #include <functional>
 
-#include "Buttons.h"
+#include "Button.h"
+#include "basic_tools.h"
 
 class Game
 {
@@ -14,30 +15,32 @@ class Game
 private:
     int resX;
     int resY;
-    int action;
 
     std::string windowName = "Template";
     sf::RenderWindow window;
     sf::Event event;
-    sf::Texture backgroundT;
-    sf::Sprite background;
-    sf::Clock clock;
-    sf::Time deltaTime;
-    sf::CircleShape ink;
-    int currentTool;
+    sf::Sprite toolbar;
+    sf::Sprite canvas;
     std::vector<Button> allButtons;
-    bool drawMode;
-    bool buttonHasBeenPressed;
-    int framesSinceSizeIncrease;
+
+    //TODO create a canvas shape. Drawings are made by modifying the canvas texture. Saving to a file just copies
+    // canvas texture
+
+    std::unique_ptr<Tool> currentTool = std::make_unique<PencilTool>(); // Sets the default tool to be a Pencil.
+
+    sf::Color currentColor;
+    int currentBrushSize = 5;
+
 public:
 
 
     Game();
 
-
-
     void runGame();
+
+    void setTool(Tool& newTool);
    
 };
 
 #endif // !GAME_H
+

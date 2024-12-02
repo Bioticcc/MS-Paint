@@ -1,23 +1,15 @@
-#include "Buttons.h"
+//#include "Buttons.h"
+
 
 //constructor
 
-inline Buttons::Buttons(sf::RenderWindow* renderWindow) : window(renderWindow) {
+Buttons::Buttons(sf::RenderWindow* renderWindow) : window(renderWindow) {
 	std::cout << "Buttons created!\n";
 	size = 5;
 }
 
-//these functions should later be held within tools.
 
-inline void Buttons::selectButton() {
-	// TODO move these. It's bad practice to have top-level using statements.
-	using std::cout;
-
-	cout << "SELECTING!\n";
-	//this is where we would call the select tool.
-}
-
-inline void Buttons::pencilButton() {
+void Buttons::pencilButton() {
 	// TODO move these. It's bad practice to have top-level using statements.
 	using std::cout;
 
@@ -31,36 +23,12 @@ inline void Buttons::pencilButton() {
 	inkDots.push_back(ink); // Store the ink object in the vector
 }
 
-inline void Buttons::eraserButton() {
-	// TODO move these. It's bad practice to have top-level using statements.
-	using std::cout;
-
-	/*
-	ALRIGHT so eraser is FUCKY! in case I get bored and go to sleep before I finish this, heres the new plan:
-	blah blah blah nvm I dont wanna explain just remember how
-	*/
-
-
-	cout << "ERASING!\n";
-	sf::CircleShape ink(size);
-	sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
-	ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
-	for (auto it = inkDots.begin(); it != inkDots.end(); ) {
-		if (ink.getGlobalBounds().intersects(it->getGlobalBounds())) {
-			it = inkDots.erase(it);
-		}
-		else {
-			++it;
-		}
-	}
-}
-
-inline void Buttons::clearButton() {
+void Buttons::clearButton() {
 	inkDots.clear();
 	system("cls");
 }
 
-inline void Buttons::saveButton() {
+void Buttons::saveButton() {
 	// TODO move these. It's bad practice to have top-level using statements.
 	using std::cout;
 
@@ -82,7 +50,7 @@ inline void Buttons::saveButton() {
 	screenshot.saveToFile(filename);
 }
 
-inline void Buttons::pencilButtonR() {
+void Buttons::pencilButtonR() {
 	sf::CircleShape ink(size);
 	ink.setFillColor(sf::Color::Red);
 	sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
@@ -90,32 +58,16 @@ inline void Buttons::pencilButtonR() {
 	inkDots.push_back(ink);
 }
 
-inline void Buttons::pencilButtonB() {
-	sf::CircleShape ink(size);
-	ink.setFillColor(sf::Color::Blue);
-	sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
-	ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
-	inkDots.push_back(ink);
-}
-
-inline void Buttons::pencilButtonG() {
-	sf::CircleShape ink(size);
-	ink.setFillColor(sf::Color::Green);
-	sf::Vector2i cursorPos = sf::Mouse::getPosition(*window);
-	ink.setPosition(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
-	inkDots.push_back(ink);
-}
-
-inline void Buttons::increaseSize() {
+void Buttons::increaseSize() {
 	size += 5;
 }
 
-inline void Buttons::decreaseSize() {
+void Buttons::decreaseSize() {
 	if (size > 5) { size -= 5; }
 
 }
 
-inline void Buttons::buttonConstructor() {
+void Buttons::buttonConstructor() {
 	textureS.loadFromFile("Buttons/select1.png");
 	textureP.loadFromFile("Buttons/pencil1.png");
 	textureE.loadFromFile("Buttons/eraser.png");
@@ -156,23 +108,4 @@ inline void Buttons::buttonConstructor() {
 	for (auto& button : buttonVect) {
 		std::cout << "Button at: (" << button.getPosX() << ", " << button.getPosY() << ")\n";
 	}
-}
-
-inline void Buttons::drawButtons() {
-	window->draw(select.getIcon());
-	window->draw(pencil.getIcon());
-	window->draw(eraser.getIcon());
-	window->draw(clear.getIcon());
-	window->draw(save.getIcon());
-	window->draw(pencilR.getIcon());
-	window->draw(pencilB.getIcon());
-	window->draw(pencilG.getIcon());
-	window->draw(increase.getIcon());
-	window->draw(decrease.getIcon());
-
-
-	for (const auto& ink : inkDots) {
-		window->draw(ink);
-	}
-
 }

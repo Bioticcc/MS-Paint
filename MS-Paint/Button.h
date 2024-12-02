@@ -15,8 +15,8 @@ class Button
 {
 private:
 	//button visuals
-	sf::Texture buttonIconTexture;
-	sf::RectangleShape buttonIcon;
+	sf::Texture buttonTexture;
+	sf::RectangleShape buttonShape;
 
 	//button position on screen
 	float posX, posY;
@@ -25,13 +25,13 @@ private:
 	bool clicked;
 
 public:
-	std::function<void()> buttonFunction;
+	std::function<void(class Game&)> onClick;
 
 	//default constructor
 	Button();
 	//constructor
 	
-	Button(sf::Texture& texture, float X, float Y, std::function<void()> functionPtr, float sizeX, float sizeY);
+	Button(sf::Texture& texture, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY);
 	/*
 	Button(const std::string& textureFilePath, float X, float Y, std::function<void()> functionPtr) {
 		if (!buttonIconTexture.loadFromFile(textureFilePath)) {
@@ -58,11 +58,9 @@ public:
 	//getters-setters
 	float getPosX();
 	float getPosY();
-	std::function<void()> getFuncPtr();
 	sf::RectangleShape getIcon();
 	void setPos(float x, float y);
 
-	void setFuncPtr(std::function<void()>& funcPtr);
 	void setButtonIcon(sf::Texture texture);
 	//wether or not the button is being hovered
 	bool isHovering(const sf::Vector2i& cursorPos);
@@ -77,3 +75,4 @@ public:
 
 
 #endif // !BUTTON_H
+

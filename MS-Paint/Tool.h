@@ -5,8 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Game.h"
-
 /*
 Programmed by: Ethan Goode
 	Abstract Tools class that all tools are children of. Contains five methods for working with the tools.
@@ -23,14 +21,19 @@ Programmed by: Ethan Goode
 class Tool
 {
 public:
+	
+	//Default Constructor
+	Tool() {};
+
+	//Virtual Destructor
 	virtual ~Tool() = 0;
 
-	virtual void toolSelect(Game& currentGame, const sf::Vector2i mousePosition) = 0;
-	virtual void toolDeselect(Game& currentGame, const sf::Vector2i mousePosition) = 0;
+	virtual void toolSelect(class Game& currentGame, const sf::Vector2i mousePosition) = 0;
+	virtual void toolDeselect(class Game& currentGame, const sf::Vector2i mousePosition) = 0;
 
-	virtual void mouseDown(Game& currentGame, const sf::Vector2i mousePosition) = 0;
-	virtual void mouseDrag(Game& currentGame, const sf::Vector2i mousePosition) = 0;
-	virtual void mouseUp(Game& currentGame, const sf::Vector2i mousePosition) = 0;
+	virtual void mouseDown(class Game& currentGame, const sf::Vector2i mousePosition) = 0;
+	virtual void mouseDrag(class Game& currentGame, const sf::Vector2i mousePosition) = 0;
+	virtual void mouseUp(class Game& currentGame, const sf::Vector2i mousePosition) = 0;
 
 };
 
