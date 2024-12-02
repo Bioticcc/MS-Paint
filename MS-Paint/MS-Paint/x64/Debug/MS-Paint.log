@@ -1,6 +1,33 @@
 ﻿  Game.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\filesystem(12): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(28,26): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'Game.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(29,28): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'Game.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(31,25): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'Game.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(32,25): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'Game.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(33,23): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'Game.cpp')
+  
   main.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\filesystem(12): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(28,26): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'main.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(29,28): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'main.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(31,25): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'main.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(32,25): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'main.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Tool.h(33,23): error C2061: syntax error: identifier 'Game'
+  (compiling source file 'main.cpp')
+  
   Generating Code...
-  MS-Paint.vcxproj -> C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\x64\Debug\MS-Paint.exe
