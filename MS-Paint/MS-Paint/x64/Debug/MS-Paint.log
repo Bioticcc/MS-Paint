@@ -1,6 +1,142 @@
 ﻿  basic_tools.cpp
-  Button.cpp
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,21): error C2065: 'Tool': undeclared identifier
+  (compiling source file 'basic_tools.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,10): error C2923: 'std::unique_ptr': 'Tool' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'basic_tools.cpp')
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,21):
+      see declaration of 'Tool'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,10): error C2976: 'std::unique_ptr': too few template arguments
+  (compiling source file 'basic_tools.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3335,7):
+      see declaration of 'std::unique_ptr'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,27): error C3000: 'std::unique_ptr': use of class template requires template argument list. Argument deduction is not allowed in non-static data member
+  (compiling source file 'basic_tools.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3335,7):
+      see declaration of 'std::unique_ptr'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(53,18): error C2061: syntax error: identifier 'Tool'
+  (compiling source file 'basic_tools.cpp')
+  
   Game.cpp
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,21): error C2065: 'Tool': undeclared identifier
+  (compiling source file 'Game.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,10): error C2923: 'std::unique_ptr': 'Tool' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'Game.cpp')
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,21):
+      see declaration of 'Tool'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,10): error C2976: 'std::unique_ptr': too few template arguments
+  (compiling source file 'Game.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3335,7):
+      see declaration of 'std::unique_ptr'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,27): error C3000: 'std::unique_ptr': use of class template requires template argument list. Argument deduction is not allowed in non-static data member
+  (compiling source file 'Game.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3335,7):
+      see declaration of 'std::unique_ptr'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(53,18): error C2061: syntax error: identifier 'Tool'
+  (compiling source file 'Game.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(68,29): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(68,17):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(68,17):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(68,29):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(69,29): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(69,17):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(69,17):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(69,29):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(71,70): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(71,58):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(71,58):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(71,70):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(74,29): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(74,17):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(74,17):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(74,29):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(104,29): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(104,17):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(104,17):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(104,29):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(105,29): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(105,17):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(105,17):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(105,29):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(106,29): error C2662: '_Get_deleter_pointer_type<_Ty,remove_reference<_Ty1>::type,void>::type std::unique_ptr<_Ty,_Dx>::get(void) noexcept const': cannot convert 'this' pointer from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx> &'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(106,17):
+      Reason: cannot convert from 'std::unique_ptr' to 'const std::unique_ptr<_Ty,_Dx>'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(106,17):
+      Conversion requires a second user-defined-conversion operator or constructor
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3432,37):
+      see declaration of 'std::unique_ptr<_Ty,_Dx>::get'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(106,29):
+      while trying to match the argument list '()'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(122,12): error C2511: 'void Game::setTool(Tool *)': overloaded member function not found in 'Game'
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(17,7):
+      see declaration of 'Game'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.cpp(125,36): error C2671: 'Game::setTool': static member functions do not have 'this' pointers
   main.cpp
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,21): error C2065: 'Tool': undeclared identifier
+  (compiling source file 'main.cpp')
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,10): error C2923: 'std::unique_ptr': 'Tool' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'main.cpp')
+      C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,21):
+      see declaration of 'Tool'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,10): error C2976: 'std::unique_ptr': too few template arguments
+  (compiling source file 'main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3335,7):
+      see declaration of 'std::unique_ptr'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(42,27): error C3000: 'std::unique_ptr': use of class template requires template argument list. Argument deduction is not allowed in non-static data member
+  (compiling source file 'main.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(3335,7):
+      see declaration of 'std::unique_ptr'
+  
+C:\Users\ethan\source\repos\MS-Paint\MS-Paint\Game.h(53,18): error C2061: syntax error: identifier 'Tool'
+  (compiling source file 'main.cpp')
+  
   Generating Code...
-  MS-Paint.vcxproj -> C:\Users\ethan\source\repos\MS-Paint\MS-Paint\x64\Debug\MS-Paint.exe

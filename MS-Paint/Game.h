@@ -9,7 +9,10 @@
 #include <string>
 
 #include "Button.h"
-#include "basic_tools.h"
+
+//Extremely unprofessional, game class won't work without these forward declarations.
+//Including basic_tools.h directly causes circular dependencies, and forward declaring Game class
+// prevents us from calling Game related methods (AFAIK)
 
 class Game
 {
@@ -22,10 +25,13 @@ private:
     sf::RenderWindow window;
 
     sf::Event event;
+    
     sf::Texture toolbarTexture;
     sf::Sprite toolbar;
+
+    sf::RenderTexture canvasRenderTexture;
     sf::Sprite canvas;
-    std::vector<Button> allButtons;
+    std::vector<Button*> allButtons;
 
     sf::Vector2f cursorPosition;
     sf::Vector2f cursorCanvasPosition;
@@ -46,16 +52,23 @@ public:
 
     void setTool(Tool* newTool);
 
-    void addButton(Button& newButton);
+    void addButton(Button* newButton);
 
     void setColor(sf::Color newColor);
+    //void getColor(void);
+
+   // void setSize(int newSize)
+
    
     sf::RenderWindow& getWindowReference(void);
 
+    void drawToCanvas(sf::Sprite* toStamp);
+
 };
 
+#include "basic_tools.h"
+
 void initializeButtons(Game&);
-void testButton(Game& masterGame);
 
 #endif // !GAME_H
 

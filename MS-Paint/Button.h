@@ -8,7 +8,7 @@
 #include <functional>
 #include <vector> 
 
-
+// Not sure if this should be abstract or use function ptrs...
 class Button
 {
 private:
@@ -23,14 +23,16 @@ private:
 public:
 	bool clicked = false;
 
+	// I've had enough of abstract classes today.
 	std::function<void(class Game&)> onClick;
 	std::function<void(class Game&)> onHold;
+	std::function<void(class Game&)> onRelease;
 
 	//default constructor
 	Button();
 	//constructor
 	
-	Button(const std::string& textureFilePath, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY);
+	Button(const std::string& textureFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick = nullptr, std::function<void(class Game&)> newOnHold = nullptr, std::function<void(class Game&)> newOnRelease = nullptr);
 	/*
 	Button(const std::string& textureFilePath, float X, float Y, std::function<void()> functionPtr) {
 		if (!buttonIconTexture.loadFromFile(textureFilePath)) {

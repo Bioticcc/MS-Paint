@@ -1,37 +1,92 @@
 #include "basic_tools.h"
 
-PencilTool::~PencilTool() {}
+SelectionTool::~SelectionTool()
+{
+}
 
-void PencilTool::toolSelect(Game& currentGame, const sf::Vector2i mousePosition) {}
+void SelectionTool::toolSelect(Game& currentGame)
+{
+}
 
-void PencilTool::toolDeselect(Game& currentGame, const sf::Vector2i mousePosition) {}
+void SelectionTool::toolUpdate(Game& currentGame)
+{
+}
 
-void PencilTool::mouseDown(Game& currentGame, const sf::Vector2i mousePosition) {}
+void SelectionTool::toolDeselect(Game& currentGame)
+{
+}
 
-void PencilTool::mouseDrag(Game& currentGame, const sf::Vector2i mousePosition) {}
+void SelectionTool::mouseDown(Game& currentGame, const sf::Vector2f mousePosition)
+{
+}
 
-void PencilTool::mouseUp(Game& currentGame, const sf::Vector2i mousePosition) {}
+void SelectionTool::mouseDrag(Game& currentGame, const sf::Vector2f mousePosition)
+{
+}
 
-EraserTool::~EraserTool() {}
+void SelectionTool::mouseUp(Game& currentGame, const sf::Vector2f mousePosition)
+{
+}
 
-void EraserTool::toolSelect(Game& currentGame, const sf::Vector2i mousePosition) {}
+EraserTool::~EraserTool()
+{
+}
 
-void EraserTool::toolDeselect(Game& currentGame, const sf::Vector2i mousePosition) {}
+void EraserTool::toolSelect(Game& currentGame)
+{
+}
 
-void EraserTool::mouseDown(Game& currentGame, const sf::Vector2i mousePosition) {}
+void EraserTool::toolUpdate(Game& currentGame)
+{
+}
 
-void EraserTool::mouseDrag(Game& currentGame, const sf::Vector2i mousePosition) {}
+void EraserTool::toolDeselect(Game& currentGame)
+{
+}
 
-void EraserTool::mouseUp(Game& currentGame, const sf::Vector2i mousePosition) {}
+void EraserTool::mouseDown(Game& currentGame, const sf::Vector2f mousePosition)
+{
+}
 
-SelectionTool::~SelectionTool() {}
+void EraserTool::mouseDrag(Game& currentGame, const sf::Vector2f mousePosition)
+{
+}
 
-void SelectionTool::toolSelect(Game& currentGame, const sf::Vector2i mousePosition) {}
+void EraserTool::mouseUp(Game& currentGame, const sf::Vector2f mousePosition)
+{
+}
 
-void SelectionTool::toolDeselect(Game& currentGame, const sf::Vector2i mousePosition) {}
+PencilTool::~PencilTool()
+{
+}
 
-void SelectionTool::mouseDown(Game& currentGame, const sf::Vector2i mousePosition) {}
+void PencilTool::toolSelect(Game& currentGame)
+{
+	
+}
 
-void SelectionTool::mouseDrag(Game& currentGame, const sf::Vector2i mousePosition) {}
+void PencilTool::toolUpdate(Game& currentGame)
+{
+	//ink.setRadius(currentGame.)
+}
 
-void SelectionTool::mouseUp(Game& currentGame, const sf::Vector2i mousePosition) {}
+void PencilTool::toolDeselect(Game& currentGame)
+{
+}
+
+void PencilTool::mouseDown(Game& currentGame, const sf::Vector2f mousePosition)
+{
+	
+}
+
+void PencilTool::mouseDrag(Game& currentGame, const sf::Vector2f mousePosition)
+{
+	//DEBUG - remove
+	std::cout << "PencilTool Drag!";
+}
+
+void PencilTool::mouseUp(Game& currentGame, const sf::Vector2f mousePosition)
+{
+	//DEBUG - remove
+	std::cout << "PencilTool Up!";
+}

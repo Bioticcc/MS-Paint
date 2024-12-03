@@ -8,7 +8,7 @@ Button::Button() {
 	posY = 0;
 }
 
-Button::Button(const std::string& textureFilePath, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY) {
+Button::Button(const std::string& textureFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick, std::function<void(class Game&)> newOnHold, std::function<void(class Game&)> newOnRelease) {
 	if (!buttonTexture.loadFromFile(textureFilePath)) {
 		std::cerr << "Failed to load texture from: " << textureFilePath << "\n";
 	}
@@ -22,14 +22,16 @@ Button::Button(const std::string& textureFilePath, float X, float Y, std::functi
 	buttonShape.setPosition(X, Y);
 	posX = X;
 	posY = Y;
-	onClick = functionPtr;
+	onClick = newOnClick;
+	onHold = newOnHold;
+	onRelease = newOnRelease;
 	clicked = false;
 }
 
 //copy constructor
 
 Button::Button(const Button& B) {
-	buttonTexture = B.buttonTexture;
+	buttonTexture= B.buttonTexture;
 	buttonShape = B.buttonShape;
 	posX = B.posX;
 	posY = B.posY;
@@ -37,6 +39,7 @@ Button::Button(const Button& B) {
 	clicked = B.clicked;
 	onClick = B.onClick;
 	onHold = B.onHold;
+	onRelease = B.onRelease;
 }
 
 //deconstructor
