@@ -3,8 +3,10 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
-#include <iostream>  
+
 #include <functional>
+#include <iostream>  
+#include <string>
 
 #include "Button.h"
 #include "basic_tools.h"
@@ -18,10 +20,15 @@ private:
 
     std::string windowName = "Template";
     sf::RenderWindow window;
+
     sf::Event event;
+    sf::Texture toolbarTexture;
     sf::Sprite toolbar;
     sf::Sprite canvas;
     std::vector<Button> allButtons;
+
+    sf::Vector2f cursorPosition;
+    sf::Vector2f cursorCanvasPosition;
 
     //TODO create a canvas shape. Drawings are made by modifying the canvas texture. Saving to a file just copies
     // canvas texture
@@ -33,14 +40,22 @@ private:
 
 public:
 
-
     Game();
 
     void runGame();
 
-    void setTool(Tool& newTool);
+    void setTool(Tool* newTool);
+
+    void addButton(Button& newButton);
+
+    void setColor(sf::Color newColor);
    
+    sf::RenderWindow& getWindowReference(void);
+
 };
+
+void initializeButtons(Game&);
+void testButton(Game& masterGame);
 
 #endif // !GAME_H
 

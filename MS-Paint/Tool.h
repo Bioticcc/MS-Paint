@@ -37,4 +37,6 @@ public:
 
 };
 
+inline Tool::~Tool() {}
+
 #endif // !TOOL_H

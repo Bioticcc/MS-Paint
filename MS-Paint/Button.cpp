@@ -8,8 +8,13 @@ Button::Button() {
 	posY = 0;
 }
 
-Button::Button(sf::Texture& texture, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY) {
-	buttonShape.setTexture(&texture);
+Button::Button(const std::string& textureFilePath, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY) {
+	if (!buttonTexture.loadFromFile(textureFilePath)) {
+		std::cerr << "Failed to load texture from: " << textureFilePath << "\n";
+	}
+	else {
+		buttonShape.setTexture(&buttonTexture);
+	}
 	//buttonIcon.setSize(sf::Vector2f(texture.getSize().x, texture.getSize().y));
 	size.x = sizeX;
 	size.y = sizeY;
@@ -25,9 +30,13 @@ Button::Button(sf::Texture& texture, float X, float Y, std::function<void(class 
 
 Button::Button(const Button& B) {
 	buttonTexture = B.buttonTexture;
+	buttonShape = B.buttonShape;
 	posX = B.posX;
 	posY = B.posY;
+	size = B.size;
+	clicked = B.clicked;
 	onClick = B.onClick;
+	onHold = B.onHold;
 }
 
 //deconstructor
@@ -56,31 +65,19 @@ void Button::setButtonIcon(sf::Texture texture) {
 
 //wether or not the button is being hovered
 
-bool Button::isHovering(const sf::Vector2i& cursorPos) {
-	//because for some damn reason mouse pos is taken by INT values by default?? sfml is on drugs 
+/*
+Programmed by: Bioticcc
+	Edited by: Inventor4life
+
+	returns true if the mouse position is within the bounds of the button.
+*/
+bool Button::isMouseHoveringOverButton(const sf::Vector2f& cursorPos) {
+	
 	if (buttonShape.getGlobalBounds().contains(static_cast<sf::Vector2f>(cursorPos))) {
-		//mouse is hovering button!
+		//mouse is hovering over button!
 		return true;
 	}
 	else return false;
-}
-
-//wether or not the button is being pressed
-
-bool Button::isPressed(const sf::Vector2i& cursorPos) {
-	if (isHovering(cursorPos)) {
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			if (!clicked) { // Check if the button is not already clicked
-				clicked = true; // Mark as clicked
-				cout << "button pressed!\n";
-				return true;
-			}
-		}
-		else {
-			clicked = false; // Reset on mouse release
-		}
-	}
-	return false;
 }
 
 void Button::draw(sf::RenderWindow& window) {

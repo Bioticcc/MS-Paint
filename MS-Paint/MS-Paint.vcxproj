@@ -167,7 +167,6 @@
   <ItemGroup>
     <ClCompile Include="basic_tools.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Buttons.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -176,6 +175,9 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Tool.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Buttons.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

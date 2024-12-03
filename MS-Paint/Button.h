@@ -4,12 +4,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <vector> 
 #include <iostream>
 #include <functional>
+#include <vector> 
 
-using std::cout;
-using std::vector;
 
 class Button
 {
@@ -22,16 +20,17 @@ private:
 	float posX, posY;
 	sf::Vector2f size;
 
-	bool clicked;
-
 public:
+	bool clicked = false;
+
 	std::function<void(class Game&)> onClick;
+	std::function<void(class Game&)> onHold;
 
 	//default constructor
 	Button();
 	//constructor
 	
-	Button(sf::Texture& texture, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY);
+	Button(const std::string& textureFilePath, float X, float Y, std::function<void(class Game&)> functionPtr, float sizeX, float sizeY);
 	/*
 	Button(const std::string& textureFilePath, float X, float Y, std::function<void()> functionPtr) {
 		if (!buttonIconTexture.loadFromFile(textureFilePath)) {
@@ -63,10 +62,7 @@ public:
 
 	void setButtonIcon(sf::Texture texture);
 	//wether or not the button is being hovered
-	bool isHovering(const sf::Vector2i& cursorPos);
-
-	//wether or not the button is being pressed
-	bool isPressed(const sf::Vector2i& cursorPos);
+	bool isMouseHoveringOverButton(const sf::Vector2f& cursorPos);
 
 	void draw(sf::RenderWindow& window);
 
