@@ -14,6 +14,9 @@ Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowN
 
     canvas.setPosition(428, 0);
 
+    this->currentColor = sf::Color::Blue;
+    this->setTool(new PencilTool()); // Set default tool
+
 }
 
 void Game::runGame() {
@@ -21,11 +24,6 @@ void Game::runGame() {
     //currentTool = 1; //by default our starting tool will be 1 (select, ie standard cursor)
 
     initializeButtons(*this);
-
-    //DEBUG - remove comment on immediate above, delete everything until END DEBUG
-   // Button save("Buttons/save.png", 118.0f, 785.0f, testButton, 210.0f, 100.0f);
-    //this->addButton(save);
-    //END DEBUG
 
     //Edging Variables
     const bool PRESSED = true;
@@ -62,7 +60,10 @@ void Game::runGame() {
         // Code to handle mouse clicks and motion. Undefined behavior if mouse goes off-window.
         cursorPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
         if (canvas.getGlobalBounds().contains(cursorPosition)) { // If mouse on Canvas
-            cursorCanvasPosition = cursorPosition;
+            cursorCanvasPosition = cursorPosition - canvas.getPosition();
+            cursorCanvasPosition.y = 1080 - cursorCanvasPosition.y;
+            currentTool.get()->mouseMotion(*this, cursorPosition);
+
             if (mouseLeftPosEdge) {
                 //cout << "mouse pos (x,y): " << cursorCanvasPosition.x << "," << cursorCanvasPosition.y << std::endl;
                 currentTool.get()->mouseDown(*this, cursorCanvasPosition);
@@ -107,13 +108,13 @@ void Game::runGame() {
             }
         }
         // Rendering
+        window.display(); // So that changes made to window in tool can be seen.
         window.clear();
         window.draw(canvas);
         window.draw(toolbar);
         for (Button* i : allButtons) {
             i->draw(window);
         }
-        window.display();
     }
 
 
@@ -121,8 +122,13 @@ void Game::runGame() {
 
 void Game::setTool(Tool* newTool)
 {
+    if (currentTool.get() != nullptr) currentTool.get()->toolDeselect(*this);
     currentTool.reset(newTool); // Deallocates the old tool and sets it to the new one.
     currentTool.get()->toolSelect(*this);
+}
+
+void Game::updateTool(void) {
+    currentTool.get()->toolUpdate(*this);
 }
 
 void Game::addButton(Button* newButton)
@@ -130,18 +136,13 @@ void Game::addButton(Button* newButton)
     allButtons.push_back(newButton);
 }
 
-void Game::setColor(sf::Color newColor)
-{
-    currentColor = newColor;
-}
-
 sf::RenderWindow& Game::getWindowReference(void)
 {
     return this->window;
 }
 
-void Game::drawToCanvas(sf::Sprite* toStamp) {
-    canvasRenderTexture.draw(*toStamp);
+void Game::drawToCanvas(sf::Shape& toStamp) {
+    canvasRenderTexture.draw(toStamp);
     canvas.setTexture(canvasRenderTexture.getTexture());
 }
 
@@ -149,32 +150,65 @@ void saveButtonClick(Game& masterGame) {
     std::cout << "SAVE!";
 }
 
-void saveButtonHold(Game& masterGame) {
-    std::cout << "SAVE HOLD!";
-}
-
-void saveButtonRelease(Game& masterGame) {
-    std::cout << "SAVE RELEASE";
-}
-
 void pencilButtonClick(Game& masterGame) {
-    std::cout << "PENCIL!";
+    masterGame.setTool(new PencilTool());
 }
 
-void pencilButtonHold(Game& masterGame) {
-    std::cout << "pencil HOLD!";
+void eraserButtonClick(Game& masterGame) {
+    masterGame.setTool(new EraserTool());
 }
 
-void pencilButtonRelease(Game& masterGame) {
-    std::cout << "pencil RELEASE";
+void sizeIncreaseButtonClick(Game& masterGame) {
+    masterGame.brushSize += 5;
+    masterGame.updateTool();
 }
 
+void sizeDecreaseButtonClick(Game& masterGame) {
+    if (masterGame.brushSize > 5) {
+        masterGame.brushSize -= 5;
+        masterGame.updateTool();
+    }
+}
+
+
+/*
+Programmed by: Inventor4life
+    Creates and initializes all buttons.
+*/
 void initializeButtons(Game& masterGame)
 {
-    Button* save = new Button("Buttons/save.png", 118.0f, 785.0f, 210.0f, 100.0f, saveButtonClick, saveButtonHold, saveButtonRelease);
+    /*
+    How to create a new button:
+        1.) Create a button pointer with an appropriate name.
+        2.) Following the template below, specify the cover image, location, and size
+        3.) Define any necessary functions (see above). Function must accept Game& and have void return type.
+        4.) Display the button pointer using masterGame.addButton
+        
+        Three optional functions (in order): 
+            onClick - Executes when button is clicked
+            onHold  - Executes when button is held (once per frame after initial click)
+            onRelease - Executes when button is released.
+
+        UPGRADE:
+            Modify button to be base class w/virtual functions (not pure!). This will allow
+            buttons to change their textures and make it easier to add different button types.
+    
+    */
+
+    Button* save = new Button("Buttons/save.png", 118.0f, 785.0f, 210.0f, 100.0f, saveButtonClick/*, saveButtonHold, saveButtonRelease*/);
     masterGame.addButton(save);
 
-    Button* pencil = new Button("Buttons/pencil1.png", 218.0f, 16.0f, 115.0f, 115.0f, pencilButtonClick, pencilButtonHold, pencilButtonRelease);
+    Button* pencil = new Button("Buttons/pencil1.png", 218.0f, 16.0f, 115.0f, 115.0f, pencilButtonClick);
     masterGame.addButton(pencil);
+
+    Button* eraser = new Button("Buttons/eraser.png", 16.0f, 148.0f, 115.0f, 115.0f, eraserButtonClick);
+    masterGame.addButton(eraser);
+
+    Button* increase = new Button("Buttons/increase.png", 14.0f, 280.0f, 115.0f, 115.0f, sizeIncreaseButtonClick);
+    masterGame.addButton(increase);
+
+    Button* decrease = new Button("Buttons/decrease.png", 14.0f, 414.0f, 115.0f, 115.0f, sizeDecreaseButtonClick);
+    masterGame.addButton(decrease);
+
 }
 
