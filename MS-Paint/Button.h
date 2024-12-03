@@ -1,40 +1,38 @@
-#include "Header.h"
+#pragma once
+#ifndef BUTTON_H
+#define BUTTON_H
 
+#include <SFML/Graphics.hpp>
+
+#include <iostream>
+#include <functional>
+#include <vector> 
+
+// Not sure if this should be abstract or use function ptrs...
 class Button
 {
 private:
 	//button visuals
-	sf::Texture buttonIconTexture;
-	sf::RectangleShape buttonIcon;
+	sf::Texture buttonTexture;
+	sf::RectangleShape buttonShape;
 
 	//button position on screen
 	float posX, posY;
 	sf::Vector2f size;
 
-	bool clicked;
-
 public:
-	std::function<void()> buttonFunction;
+	bool clicked = false;
+
+	// I've had enough of abstract classes today.
+	std::function<void(class Game&)> onClick;
+	std::function<void(class Game&)> onHold;
+	std::function<void(class Game&)> onRelease;
 
 	//default constructor
-	Button() {
-		posX = 0;
-		posY = 0;
-	}
+	Button();
 	//constructor
 	
-	Button(sf::Texture& texture, float X, float Y, std::function<void()> functionPtr, float sizeX, float sizeY) {
-		buttonIcon.setTexture(&texture);
-		//buttonIcon.setSize(sf::Vector2f(texture.getSize().x, texture.getSize().y));
-		size.x = sizeX;
-		size.y = sizeY;
-		buttonIcon.setSize(size);
-		buttonIcon.setPosition(X, Y);
-		posX = X;
-		posY = Y;
-		buttonFunction = functionPtr;
-		clicked = false;
-	}
+	Button(const std::string& textureFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick = nullptr, std::function<void(class Game&)> newOnHold = nullptr, std::function<void(class Game&)> newOnRelease = nullptr);
 	/*
 	Button(const std::string& textureFilePath, float X, float Y, std::function<void()> functionPtr) {
 		if (!buttonIconTexture.loadFromFile(textureFilePath)) {
@@ -53,62 +51,26 @@ public:
 
 
 	//copy constructor
-	Button(const Button& B) {
-		buttonIconTexture = B.buttonIconTexture;
-		posX = B.posX;
-		posY = B.posY;
-		buttonFunction = B.buttonFunction;
-	}
+	Button(const Button& B);
 
 	//deconstructor
-	~Button() {}
+	~Button();
 
 	//getters-setters
-	float getPosX() { return posX; }
-	float getPosY() { return posY; }
-	std::function<void()> getFuncPtr() { return buttonFunction; }
-	sf::RectangleShape getIcon() { return buttonIcon; }
-	void setPos(float x, float y) {
-		posX = x;
-		posY = y;
-		buttonIcon.setPosition(posX, posY);
-	}
+	float getPosX();
+	float getPosY();
+	sf::RectangleShape getIcon();
+	void setPos(float x, float y);
 
-	void setFuncPtr(std::function<void()>& funcPtr) { buttonFunction = funcPtr; }
-	void setButtonIcon(sf::Texture texture) { 
-		buttonIconTexture = texture; 
-		buttonIcon.setTexture(&buttonIconTexture);
-	}
+	void setButtonIcon(sf::Texture texture);
 	//wether or not the button is being hovered
-	bool isHovering(const sf::Vector2i& cursorPos) {
-		//because for some damn reason mouse pos is taken by INT values by default?? sfml is on drugs 
-		sf::Vector2f cursorPosF(static_cast<float>(cursorPos.x), static_cast<float>(cursorPos.y));
-		if (buttonIcon.getGlobalBounds().contains(cursorPosF)) {
-			//mouse is hovering button!
-			return true;
-		}
-		else return false;
-	}
+	bool isMouseHoveringOverButton(const sf::Vector2f& cursorPos);
 
-	//wether or not the button is being pressed
-	bool isPressed(const sf::Vector2i& cursorPos) {
-		if (isHovering(cursorPos)) {
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-				if (!clicked) { // Check if the button is not already clicked
-					clicked = true; // Mark as clicked
-					cout << "button pressed!\n";
-					return true;
-				}
-			}
-			else {
-				clicked = false; // Reset on mouse release
-			}
-		}
-		return false;
-	}
-
-	void draw(sf::RenderWindow& window) {
-		window.draw(buttonIcon);
-	}
+	void draw(sf::RenderWindow& window);
 
 };
+
+
+
+#endif // !BUTTON_H
+

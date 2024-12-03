@@ -1,155 +1,65 @@
 #pragma once
-#include "Header.h"
-#include "Buttons.h"
+#ifndef GAME_H
+#define GAME_H
+
+#include <SFML/Graphics.hpp>
+
+#include <functional>
+#include <iostream>  
+#include <string>
+
+#include "Button.h"
+
+//Extremely unprofessional, game class won't work without these forward declarations.
+//Including basic_tools.h directly causes circular dependencies, and forward declaring Game class
+// prevents us from calling Game related methods (AFAIK)
+class Tool;
 class Game
 {
 
 private:
     int resX;
     int resY;
-    int action;
 
     std::string windowName = "Template";
     sf::RenderWindow window;
+
     sf::Event event;
-    sf::Texture backgroundT;
-    sf::Sprite background;
-    sf::Clock clock;
-    sf::Time deltaTime;
-    sf::CircleShape ink;
-    int currentTool;
-    Buttons allButtons;
-    bool drawMode;
-    bool buttonHasBeenPressed;
-    int framesSinceSizeIncrease;
+    
+    sf::Texture toolbarTexture;
+    sf::Sprite toolbar;
+
+    sf::RenderTexture canvasRenderTexture;
+    sf::Sprite canvas;
+    std::vector<Button*> allButtons;
+
+    sf::Vector2f cursorPosition;
+    sf::Vector2f cursorCanvasPosition;
+
+    std::unique_ptr<Tool> currentTool = nullptr; // Sets the default tool to be a Pencil.
+
 public:
+    sf::Color currentColor;
+    int brushSize = 5;
 
+    Game();
 
-    Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowName), allButtons(&window) {
-        if (!backgroundT.loadFromFile("Backgrounds/background1.png")) {
-            std::cerr << "Failed to load background texture\n";
-        }
-        background.setTexture(backgroundT);
-        allButtons.buttonConstructor(); // Initialize buttons in the constructor
-        framesSinceSizeIncrease = 30;
-    }
+    void runGame();
 
+    void setTool(Tool* newTool);
+    void updateTool(void);
 
-
-    void runGame() {
-        //currentTool = 1; //by default our starting tool will be 1 (select, ie standard cursor)
-        bool wasMousePressed = false;
-        while (window.isOpen()) {
-            buttonHasBeenPressed = false;
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed) {
-                    window.close();
-                }
-            }
-
-            sf::Vector2i cursorPos = sf::Mouse::getPosition(window);
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !wasMousePressed) {
-                cout << "mouse pos (x,y): " << cursorPos.x << "," << cursorPos.y << std::endl;
-                if (!buttonHasBeenPressed) {
-                    if (allButtons.select.isHovering(cursorPos)) {
-                        cout << "select pressed\n";
-                        currentTool = 1;
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.pencil.isHovering(cursorPos)) {
-                        cout << "pencil pressed\n";
-                        currentTool = 2;
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.eraser.isHovering(cursorPos)) {
-                        cout << "eraser pressed\n";
-                        currentTool = 3;
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.clear.isHovering(cursorPos)) {
-                        cout << "clear pressed\n";
-                        allButtons.clear.buttonFunction();
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.save.isHovering(cursorPos)) {
-                        cout << "save pressed\n";
-                        allButtons.save.buttonFunction();
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.pencilR.isHovering(cursorPos)) {
-                        cout << "pencil RED pressed\n";
-                        currentTool = 4;
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.pencilB.isHovering(cursorPos)) {
-                        cout << "pencil BLUE pressed\n";
-                        currentTool = 5;
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.pencilG.isHovering(cursorPos)) {
-                        cout << "pencil GREEN pressed\n";
-                        currentTool = 6;
-                        buttonHasBeenPressed = true;
-                    }
-
-                    else if (allButtons.increase.isHovering(cursorPos) && framesSinceSizeIncrease >= 30) {
-                        cout << "INCREASE INKN SIZE pressed";
-                        allButtons.increase.buttonFunction();
-                        framesSinceSizeIncrease = 0;
-                    }
-
-                    else if (allButtons.decrease.isHovering(cursorPos) && framesSinceSizeIncrease >= 30) {
-                        cout << "DECREASE INKN SIZE pressed";
-                        allButtons.decrease.buttonFunction();
-                        framesSinceSizeIncrease = 0;
-                    }
-
-
-                }
+    void addButton(Button* newButton);
    
-            }
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (cursorPos.x > 425.0f) {
-                    switch (currentTool) {
-                    case 1:
-                        allButtons.select.buttonFunction();
-                        break;
-                    case 2:
-                        allButtons.pencil.buttonFunction();
-                        break;
-                    case 3:
-                        allButtons.eraser.buttonFunction();
-                        break;
-                    case 4:
-                        allButtons.pencilR.buttonFunction();
-                        break;
-                    case 5:
-                        allButtons.pencilB.buttonFunction();
-                        break;
-                    case 6:
-                        allButtons.pencilG.buttonFunction();
-                        break;
-                    }
-                }
-            }
-            wasMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-            framesSinceSizeIncrease++;
-            // Rendering
-            window.clear();
-            window.draw(background);
-            allButtons.drawButtons();
-            window.display();
-        }
+    sf::RenderWindow& getWindowReference(void);
 
-           
-    }
-   
+    void drawToCanvas(sf::Shape& toStamp);
+
 };
+
+#include "basic_tools.h" // F***** up 6OD9^MN circular inheritance weird SH|T
+
+void initializeButtons(Game&);
+
+#endif // !GAME_H
 
