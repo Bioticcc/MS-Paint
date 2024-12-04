@@ -148,6 +148,17 @@ void Game::drawToCanvas(sf::Shape& toStamp) {
 
 void saveButtonClick(Game& masterGame) {
     std::cout << "SAVE!";
+    sf::Texture screenshotTexture;
+    screenshotTexture.create(masterGame.getWindowReference().getSize().x, masterGame.getWindowReference().getSize().y);
+    screenshotTexture.update(masterGame.getWindowReference());
+    sf::Image screenshot = screenshotTexture.copyToImage();
+    std::time_t now = std::time(nullptr);
+    struct tm buf;
+    localtime_s(&buf, &now);
+    char timestamp[20];
+    std::strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", &buf);
+    std::string filename = "SavedDrawings/drawing_" + std::string(timestamp) + ".png";
+    screenshot.saveToFile(filename);
 }
 
 // default pencil, Black
@@ -255,7 +266,8 @@ void sizeIncreaseButtonClick(Game& masterGame) {
     masterGame.allButtons[6]->setButtonIcon(pressedTexture);
 }
 void sizeIncreaseButtonHold(Game& masterGame) {
-    masterGame.brushSize += .5;
+    std::cout << "Increase HOLDING" << std::endl;
+    masterGame.brushSize += .1;
     masterGame.updateTool();
     // hold code does not actually apply each frame, curious indeed
 }
@@ -271,14 +283,21 @@ void sizeDecreaseButtonClick(Game& masterGame) {
         masterGame.brushSize -= 5;
         masterGame.updateTool();
     }
+    else {
+        masterGame.brushSize = 5;
+    }
     sf::Texture pressedTexture;
     pressedTexture.loadFromFile("Buttons/decreasePressed.png");
     masterGame.allButtons[7]->setButtonIcon(pressedTexture);
 }
 void sizeDecreaseButtonHold(Game& masterGame) {
+    std::cout << "Decrease HOLDING" << std::endl;
     if (masterGame.brushSize > 5) {
-        masterGame.brushSize -= -5;
+        masterGame.brushSize -= -.1;
         masterGame.updateTool();
+    }
+    else {
+        masterGame.brushSize = 5;
     }
 }
 void sizeDecreaseButtonRelease(Game& masterGame) {

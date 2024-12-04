@@ -40,7 +40,7 @@ private:
 public:
     std::vector<Button*> allButtons;
     sf::Color currentColor;
-    int brushSize = 5;
+    float brushSize = 5;
 
     Game();
 
