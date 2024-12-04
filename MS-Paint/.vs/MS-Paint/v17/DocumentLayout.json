@@ -1,41 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\",
+  "WorkspaceRootPath": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Buttons.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Buttons.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Buttons.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\basic_tools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\basic_tools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -45,18 +45,18 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 152,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Game.h",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Game.h",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Game.h",
               "RelativeDocumentMoniker": "Game.h",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Game.h",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Game.h",
               "RelativeToolTip": "Game.h",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAACQAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACgAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-25T06:46:20.23Z",
               "IsPinned": true,
@@ -64,63 +64,42 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "basic_tools.h",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\basic_tools.h",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\basic_tools.h",
               "RelativeDocumentMoniker": "basic_tools.h",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\basic_tools.h",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\basic_tools.h",
               "RelativeToolTip": "basic_tools.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAABUAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAADwAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-02T19:49:03.745Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Tool.h",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Tool.h",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Tool.h",
               "RelativeDocumentMoniker": "Tool.h",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Tool.h",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Tool.h",
               "RelativeToolTip": "Tool.h",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-02T05:26:48.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T05:26:48.308Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Button.h",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Button.h",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Button.h",
               "RelativeDocumentMoniker": "Button.h",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Button.h",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Button.h",
               "RelativeToolTip": "Button.h",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAABkAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-19T23:30:53.846Z",
               "EditorCaption": ""
@@ -128,16 +107,16 @@
           ]
         },
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "DockedWidth": 248,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Buttons.txt",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Buttons.txt",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Buttons.txt",
               "RelativeDocumentMoniker": "Buttons.txt",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Buttons.txt",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Buttons.txt",
               "RelativeToolTip": "Buttons.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
@@ -148,37 +127,37 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Button.cpp",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Button.cpp",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Button.cpp",
               "RelativeDocumentMoniker": "Button.cpp",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Button.cpp",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Button.cpp",
               "RelativeToolTip": "Button.cpp",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAACoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAACoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-02T18:59:23.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "basic_tools.cpp",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\basic_tools.cpp",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\basic_tools.cpp",
               "RelativeDocumentMoniker": "basic_tools.cpp",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\basic_tools.cpp",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\basic_tools.cpp",
               "RelativeToolTip": "basic_tools.cpp",
-              "ViewState": "AgIAADsAAAAAAAAAAAAewE4AAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-02T19:49:08.535Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Game.cpp",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Game.cpp",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Game.cpp",
               "RelativeDocumentMoniker": "Game.cpp",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\Game.cpp",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\Game.cpp",
               "RelativeToolTip": "Game.cpp",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAewMUAAACKAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAcwFcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-02T05:28:38.794Z",
               "EditorCaption": ""
@@ -187,14 +166,13 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\main.cpp",
+              "DocumentMoniker": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
-              "ToolTip": "C:\\Users\\ethan\\source\\repos\\MS-Paint\\MS-Paint\\main.cpp",
+              "ToolTip": "C:\\Users\\Zach Baker\\Desktop\\GitHub Repos\\CPTS 122 - Duck Tape \u0026 Dreams\\MS-Paint\\MS-Paint\\main.cpp",
               "RelativeToolTip": "main.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-17T00:08:02.112Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-17T00:08:02.112Z"
             }
           ]
         }

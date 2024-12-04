@@ -14,13 +14,13 @@ Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowN
 
     canvas.setPosition(428, 0);
 
-    this->currentColor = sf::Color::Blue;
+    this->currentColor = sf::Color::Black;
     this->setTool(new PencilTool()); // Set default tool
 
 }
 
 void Game::runGame() {
-    using std::cout;
+    using std::cout; //skull emoji
     //currentTool = 1; //by default our starting tool will be 1 (select, ie standard cursor)
 
     initializeButtons(*this);
@@ -150,24 +150,141 @@ void saveButtonClick(Game& masterGame) {
     std::cout << "SAVE!";
 }
 
+// default pencil, Black
 void pencilButtonClick(Game& masterGame) {
+    masterGame.currentColor = sf::Color::Black;
     masterGame.setTool(new PencilTool());
+    std::cout << "BLACK SELECTED" << std::endl;
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/pencil1Pressed.png");
+    masterGame.allButtons[1]->setButtonIcon(pressedTexture);
+    // MAKE SURE THE ELEME^NT HERE MATCHES IN THE ORDER IT WAS ADDED TO THE VECTOR
+    // I wanna add a public element to the buttons so I can search and return buttons such that we could
+    // give buttons an string member to search for them by thus getting rid of this hardcoding
+}
+void pencilButtonHold(Game& mastergame) {
+    std::cout << "BLACK HOLDING" << std::endl;
+}
+void pencilButtonRelease(Game& masterGame) {
+    std::cout << "BLACK RELEASED" << std::endl;
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/pencil1.png");
+    masterGame.allButtons[1]->setButtonIcon(defaultTexture);
 }
 
+// default pencil, Red
+void pencilRedButtonClick(Game& masterGame) {
+    masterGame.currentColor = sf::Color::Red;
+    masterGame.setTool(new PencilTool());
+    std::cout << "RED SELECTED" << std::endl;
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/pencilRPressed.png");
+    masterGame.allButtons[2]->setButtonIcon(pressedTexture);
+}
+void pencilRedButtonHold(Game& mastergame) {
+    std::cout << "RED HOLDING" << std::endl;
+}
+void pencilRedButtonRelease(Game& masterGame) {
+    std::cout << "RED RELEASED" << std::endl;
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/pencilR.png");
+    masterGame.allButtons[2]->setButtonIcon(defaultTexture);
+}
+
+// default pencil, Green
+void pencilGreenButtonClick(Game& masterGame) {
+    masterGame.currentColor = sf::Color::Green;
+    masterGame.setTool(new PencilTool());
+    std::cout << "GREEN SELECTED" << std::endl;
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/pencilGPressed.png");
+    masterGame.allButtons[3]->setButtonIcon(pressedTexture);
+}
+void pencilGreenButtonHold(Game& mastergame) {
+    std::cout << "GREEN HOLDING" << std::endl;
+}
+void pencilGreenButtonRelease(Game& masterGame) {
+    std::cout << "GREEN RELEASED" << std::endl;
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/pencilG.png");
+    masterGame.allButtons[3]->setButtonIcon(defaultTexture);
+}
+
+// default pencil, Blue
+void pencilBlueButtonClick(Game& masterGame) {
+    masterGame.currentColor = sf::Color::Blue;
+    masterGame.setTool(new PencilTool());
+    std::cout << "BLUE SELECTED" << std::endl;
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/pencilBPressed.png");
+    masterGame.allButtons[4]->setButtonIcon(pressedTexture);
+}
+void pencilBlueButtonHold(Game& mastergame) {
+    std::cout << "BLUE HOLDING" << std::endl;
+}
+void pencilBlueButtonRelease(Game& masterGame) {
+    std::cout << "BLUE RELEASED" << std::endl;
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/pencilB.png");
+    masterGame.allButtons[4]->setButtonIcon(defaultTexture);
+}
+
+// default eraser
 void eraserButtonClick(Game& masterGame) {
     masterGame.setTool(new EraserTool());
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/eraserPressed.png");
+    masterGame.allButtons[5]->setButtonIcon(pressedTexture);
+}
+void eraserButtonHold(Game& masterGame) {
+    //masterGame.setTool(new EraserTool());
+}
+void eraserButtonRelease(Game& masterGame) {
+    masterGame.setTool(new EraserTool());
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/eraser.png");
+    masterGame.allButtons[5]->setButtonIcon(defaultTexture);
 }
 
+// default brush size increase
 void sizeIncreaseButtonClick(Game& masterGame) {
     masterGame.brushSize += 5;
     masterGame.updateTool();
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/increasePressed.png");
+    masterGame.allButtons[6]->setButtonIcon(pressedTexture);
+}
+void sizeIncreaseButtonHold(Game& masterGame) {
+    masterGame.brushSize += .5;
+    masterGame.updateTool();
+    // hold code does not actually apply each frame, curious indeed
+}
+void sizeIncreaseButtonRelease(Game& masterGame) {
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/increase.png");
+    masterGame.allButtons[6]->setButtonIcon(defaultTexture);
 }
 
+//default brush size decrease
 void sizeDecreaseButtonClick(Game& masterGame) {
     if (masterGame.brushSize > 5) {
         masterGame.brushSize -= 5;
         masterGame.updateTool();
     }
+    sf::Texture pressedTexture;
+    pressedTexture.loadFromFile("Buttons/decreasePressed.png");
+    masterGame.allButtons[7]->setButtonIcon(pressedTexture);
+}
+void sizeDecreaseButtonHold(Game& masterGame) {
+    if (masterGame.brushSize > 5) {
+        masterGame.brushSize -= -5;
+        masterGame.updateTool();
+    }
+}
+void sizeDecreaseButtonRelease(Game& masterGame) {
+    sf::Texture defaultTexture;
+    defaultTexture.loadFromFile("Buttons/decrease.png");
+    masterGame.allButtons[7]->setButtonIcon(defaultTexture);
 }
 
 
@@ -195,20 +312,31 @@ void initializeButtons(Game& masterGame)
     
     */
 
+    //BASIC BUTTONS
     Button* save = new Button("Buttons/save.png", 118.0f, 785.0f, 210.0f, 100.0f, saveButtonClick/*, saveButtonHold, saveButtonRelease*/);
     masterGame.addButton(save);
 
-    Button* pencil = new Button("Buttons/pencil1.png", 218.0f, 16.0f, 115.0f, 115.0f, pencilButtonClick);
+    Button* pencil = new Button("Buttons/pencil1.png", 148.0f, 16.0f, 115.0f, 115.0f, pencilButtonClick, pencilButtonHold, pencilButtonRelease);
     masterGame.addButton(pencil);
 
-    Button* eraser = new Button("Buttons/eraser.png", 16.0f, 148.0f, 115.0f, 115.0f, eraserButtonClick);
+    Button* pencilRed = new Button("Buttons/pencilR.png", 148.0f, 148.0f, 115.0f, 115.0f, pencilRedButtonClick, pencilRedButtonHold, pencilRedButtonRelease);
+    masterGame.addButton(pencilRed);
+
+    Button* pencilGreen = new Button("Buttons/pencilG.png", 148.0f, 280.0f, 115.0f, 115.0f, pencilGreenButtonClick, pencilGreenButtonHold, pencilGreenButtonRelease);
+    masterGame.addButton(pencilGreen);
+
+    Button* pencilBlue = new Button("Buttons/pencilB.png", 148.0f, 412.0f, 115.0f, 115.0f , pencilBlueButtonClick, pencilBlueButtonHold, pencilBlueButtonRelease);
+    masterGame.addButton(pencilBlue);
+
+    Button* eraser = new Button("Buttons/eraser.png", 16.0f, 148.0f, 115.0f, 115.0f, eraserButtonClick, eraserButtonHold, eraserButtonRelease);
     masterGame.addButton(eraser);
 
-    Button* increase = new Button("Buttons/increase.png", 14.0f, 280.0f, 115.0f, 115.0f, sizeIncreaseButtonClick);
+    Button* increase = new Button("Buttons/increase.png", 14.0f, 280.0f, 115.0f, 115.0f, sizeIncreaseButtonClick, sizeIncreaseButtonHold , sizeIncreaseButtonRelease);
     masterGame.addButton(increase);
 
-    Button* decrease = new Button("Buttons/decrease.png", 14.0f, 414.0f, 115.0f, 115.0f, sizeDecreaseButtonClick);
+    Button* decrease = new Button("Buttons/decrease.png", 14.0f, 414.0f, 115.0f, 115.0f, sizeDecreaseButtonClick, sizeDecreaseButtonHold, sizeDecreaseButtonRelease);
     masterGame.addButton(decrease);
 
+    //PRESSED BUTTONS
 }
 
