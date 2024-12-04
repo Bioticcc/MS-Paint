@@ -31,7 +31,6 @@ private:
 
     sf::RenderTexture canvasRenderTexture;
     sf::Sprite canvas;
-    std::vector<Button*> allButtons;
 
     sf::Vector2f cursorPosition;
     sf::Vector2f cursorCanvasPosition;
@@ -39,6 +38,7 @@ private:
     std::unique_ptr<Tool> currentTool = nullptr; // Sets the default tool to be a Pencil.
 
 public:
+    std::vector<Button*> allButtons;
     sf::Color currentColor;
     int brushSize = 5;
 
