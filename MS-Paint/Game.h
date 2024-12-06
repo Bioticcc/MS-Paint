@@ -18,6 +18,14 @@ class Game
 {
 
 private:
+
+
+
+ 
+
+
+
+
     int resX;
     int resY;
 
@@ -54,6 +62,10 @@ public:
     sf::RenderWindow& getWindowReference(void);
 
     void drawToCanvas(sf::Shape& toStamp);
+
+    sf::Vector2f getCursorPos_Vector2f() const;
+    sf::Vector2f getCursorCanvasPos_Vector2f() const;
+    
 
 };
 

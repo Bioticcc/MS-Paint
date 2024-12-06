@@ -99,6 +99,27 @@ void Buttons::buttonConstructor() {
 	buttonVect.push_back(save);
 	buttonVect.push_back(pencilR);
 	buttonVect.push_back(pencilB);
+	buttonV
+
+	select = Button(textureS, 16.0f, 13.0f, [this]() { selectButton(); }, 115.0f, 115.0f);
+	pencil = Button(textureP, 218.0f, 16.0f, [this]() { pencilButton(); }, 115.0f, 115.0f);
+	eraser = Button(textureE, 16.0f, 148.0f, [this]() {eraserButton(); }, 115.0f, 115.0f);
+	clear = Button(textureC, 16.0f, 918.0f, [this]() {clearButton(); }, 210.0f, 100.0f);
+	save = Button(textureSA, 118.0f, 785.0f, [this]() {saveButton(); }, 210.0f, 100.0f);
+	pencilR = Button(texturePR, 218.0f, 150.0f, [this]() {pencilButtonR(); }, 115.0f, 115.0f);
+	pencilB = Button(texturePB, 218.0f, 282.0f, [this]() {pencilButtonB(); }, 115.0f, 115.0f);
+	pencilG = Button(texturePG, 218.0f, 415.0f, [this]() {pencilButtonG(); }, 115.0f, 115.0f);
+	increase = Button(texturePLUS, 14.0f, 280.0f, [this]() {increaseSize(); }, 115.0f, 115.0f);
+	decrease = Button(textureMINUS, 14.0f, 414.0f, [this]() {decreaseSize(); }, 115.0f, 115.0f);
+
+
+	buttonVect.push_back(select);
+	buttonVect.push_back(pencil);
+	buttonVect.push_back(eraser);
+	buttonVect.push_back(clear);
+	buttonVect.push_back(save);
+	buttonVect.push_back(pencilR);
+	buttonVect.push_back(pencilB);
 	buttonVect.push_back(pencilG);
 	buttonVect.push_back(increase);
 	buttonVect.push_back(decrease);

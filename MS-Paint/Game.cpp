@@ -112,9 +112,57 @@ void Game::runGame() {
         window.clear();
         window.draw(canvas);
         window.draw(toolbar);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         for (Button* i : allButtons) {
             i->draw(window);
         }
+
+        // Add this snippet here (around line 116):
+        sf::RectangleShape colorPreview;
+        colorPreview.setSize(sf::Vector2f(100, 100)); // Set preview size
+        colorPreview.setPosition(315.0f, 595.0f); // Position below the sliders
+        colorPreview.setFillColor(currentColor); // Update the color preview
+        
+        window.draw(colorPreview);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -144,6 +192,16 @@ sf::RenderWindow& Game::getWindowReference(void)
 void Game::drawToCanvas(sf::Shape& toStamp) {
     canvasRenderTexture.draw(toStamp);
     canvas.setTexture(canvasRenderTexture.getTexture());
+}
+
+sf::Vector2f Game::getCursorPos_Vector2f() const
+{
+    return this->cursorPosition;
+}
+
+sf::Vector2f Game::getCursorCanvasPos_Vector2f() const
+{
+    return this->cursorCanvasPosition;
 }
 
 void saveButtonClick(Game& masterGame) {
@@ -306,6 +364,109 @@ void sizeDecreaseButtonRelease(Game& masterGame) {
     masterGame.allButtons[7]->setButtonIcon(defaultTexture);
 }
 
+void redSliderButtonClick(Game& masterGame) {
+    // Handle red slider click logic
+    sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
+    float xMin = 50.0f;
+    float xMax = 50.0f + 255.0f;
+    if (mousePos.x >= xMin && mousePos.x <= xMax) {
+        float normalized = (mousePos.x - xMin) / (xMax - xMin);
+        masterGame.currentColor.r = static_cast<sf::Uint8>(normalized * 255);
+        std::cout << "Red Value: " << static_cast<int>(masterGame.currentColor.r) << std::endl;
+    }
+    masterGame.setTool(new PencilTool());
+}
+
+void redSliderButtonHold(Game& masterGame) {
+    redSliderButtonClick(masterGame); // Same logic as click for dragging
+}
+
+void redSliderButtonRelease(Game& masterGame) {
+    // Nothing extra needed for release
+}
+
+void greenSliderButtonClick(Game& masterGame) {
+    // Handle green slider click logic
+    sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
+    float xMin = 50.0f;
+    float xMax = 50.0f + 255.0f;
+    if (mousePos.x >= xMin && mousePos.x <= xMax) {
+        float normalized = (mousePos.x - xMin) / (xMax - xMin);
+        masterGame.currentColor.g = static_cast<sf::Uint8>(normalized * 255);
+        std::cout << "Green Value: " << static_cast<int>(masterGame.currentColor.g) << std::endl;
+    }
+    masterGame.setTool(new PencilTool());
+}
+
+void greenSliderButtonHold(Game& masterGame) {
+    greenSliderButtonClick(masterGame); // Same logic as click for dragging
+}
+
+void greenSliderButtonRelease(Game& masterGame) {
+    // Nothing extra needed for release
+}
+
+
+void blueSliderButtonClick(Game& masterGame) {
+    // Handle blue slider click logic
+    sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
+    float xMin = 50.0f;
+    float xMax = 50.0f + 255.0f;
+    if (mousePos.x >= xMin && mousePos.x <= xMax) {
+        float normalized = (mousePos.x - xMin) / (xMax - xMin);
+        masterGame.currentColor.b = static_cast<sf::Uint8>(normalized * 255);
+        std::cout << "Blue Value: " << static_cast<int>(masterGame.currentColor.b) << std::endl;
+    }
+    masterGame.setTool(new PencilTool());
+}
+
+void blueSliderButtonHold(Game& masterGame) {
+    blueSliderButtonClick(masterGame); // Same logic as click for dragging
+}
+
+void blueSliderButtonRelease(Game& masterGame) {
+    // Nothing extra needed for release
+}
+
+
+
+void alphaSliderButtonClick(Game& masterGame) {
+    // Handle alpha slider click logic
+    sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
+    float xMin = 30.0f;  // Minimum X position of the slider
+    float xMax = 30.0f + 255.0f; // Maximum X position of the slider (slider width)
+    if (mousePos.x >= xMin && mousePos.x <= xMax) {
+        float normalized = (mousePos.x - xMin) / (xMax - xMin);
+        masterGame.currentColor.a = static_cast<sf::Uint8>(normalized * 255);
+        std::cout << "Alpha Value: " << static_cast<int>(masterGame.currentColor.a) << std::endl;
+    }
+    masterGame.setTool(new PencilTool());
+}
+
+void alphaSliderButtonHold(Game& masterGame) {
+    // Same logic as click for dragging
+    alphaSliderButtonClick(masterGame);
+}
+
+void alphaSliderButtonRelease(Game& masterGame) {
+    // Nothing extra needed for release
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 Programmed by: Inventor4life
@@ -355,6 +516,18 @@ void initializeButtons(Game& masterGame)
 
     Button* decrease = new Button("Buttons/decrease.png", 14.0f, 414.0f, 115.0f, 115.0f, sizeDecreaseButtonClick, sizeDecreaseButtonHold, sizeDecreaseButtonRelease);
     masterGame.addButton(decrease);
+
+    Button* redslider = new Button("Buttons/redSlider.png", 30.0f, 680.0f, 255.0f, 10.0f, redSliderButtonClick, redSliderButtonHold, redSliderButtonRelease);
+    masterGame.addButton(redslider);
+
+    Button* greenSlider = new Button("Buttons/greenSlider.png", 30.0f, 640.0f, 255.0f, 10.0f, greenSliderButtonClick, greenSliderButtonHold, greenSliderButtonRelease);
+    masterGame.addButton(greenSlider);
+
+    Button* blueSlider = new Button("Buttons/blueSlider.png", 30.0f, 600.0f, 255.0f, 10.0f, blueSliderButtonClick, blueSliderButtonHold, blueSliderButtonRelease);
+    masterGame.addButton(blueSlider);
+
+    Button* alphaSlider = new Button("Buttons/alphaSlider.png", 30.0f, 720.0f, 255.0f, 10.0f, alphaSliderButtonClick, alphaSliderButtonHold, alphaSliderButtonRelease);
+    masterGame.addButton(alphaSlider);
 
     //PRESSED BUTTONS
 }
