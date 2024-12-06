@@ -4,6 +4,10 @@
 using std::cout;
 using std::endl;
 
+#define MIN_BRUSH_SIZE 1.f
+#define SLIDER_DOT_RADIUS 8.f
+#define SLIDER_DOT_RESOLUTION 12.f
+
 Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowName)/*, allButtons(&window)*/ {
     if (!toolbarTexture.loadFromFile("Backgrounds/Toolbar.png")) {
         std::cerr << "Failed to load background texture\n";
@@ -20,6 +24,7 @@ Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowN
 
     timesSaved = 0;
 
+    allSliderPos = { 127,127,127,255 };
     this->currentColor = sf::Color(127,127,127,255);
     this->setTool(new PencilTool()); // Set default tool
 
@@ -38,11 +43,19 @@ void Game::runGame() {
     bool mouseLeftPosEdge = false;        // True only for the frame where mouse left went not_pressed->pressed
     bool mouseLeftNegEdge = false;        // True only for the frame where mouse left went pressed->not_pressed
 
+    // Draw Slider Dots
+    sf::CircleShape sliderDot(SLIDER_DOT_RADIUS, SLIDER_DOT_RESOLUTION);
+    sliderDot.setPosition(30.0f, 600.0f);
+    sliderDot.setFillColor(sf::Color::Black);
+    sliderDot.setOrigin(SLIDER_DOT_RADIUS, SLIDER_DOT_RADIUS);
 
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
+            }
+            if (event.type == sf::Event::Resized) {
+                // Fix the scales of the universe (why 137?)
             }
         }
         // Display window info
@@ -114,6 +127,13 @@ void Game::runGame() {
                 currentTool.get()->mouseUp(*this, cursorCanvasPosition); // Passes the last valid mouse position.
                 currentTool.get()->in_use = false;
             }
+            // Save Canvas State for undo and Redo
+            sf::Texture screenshotTexture;
+            screenshotTexture.create(getWindowReference().getSize().x, getWindowReference().getSize().y);
+            screenshotTexture.update(getWindowReference());
+            sf::Sprite screenshot;
+            screenshot.setTexture(screenshotTexture);
+            redoUndoVector.push_back(screenshot);
         }
         // Rendering
         window.display(); // So that changes made to window in tool can be seen.
@@ -130,6 +150,12 @@ void Game::runGame() {
         colorPreview.setPosition(315.0f, 595.0f); // Position below the sliders
         colorPreview.setFillColor(currentColor); // Update the color preview
         window.draw(colorPreview);
+
+        // Draw the Slider Dots
+        for (int i = 0; i < 4; i++) {
+            sliderDot.setPosition(allSliderPos[i] + 30.0f, 605.f + (40 * i));
+            window.draw(sliderDot);
+        }
     }
 
 
@@ -203,14 +229,21 @@ void Game::displayInfo() const
         // all lines except where it says "print here" because the strings
         // there are printed from the button functions
     ANSI::HideCursor();
-    ANSI::AbsMoveCursorRowCol(1, 22);
-    for (int i = 0; i < 9; i++) {
+    ANSI::AbsMoveCursorRowCol(2, 22);
+    for (int i = 0; i < 8; i++) {
         ANSI::EraseInLine(RIGHT);
         ANSI::RelMoveCursorRowCol(1, 0);
     };
 
+    // Print window Size
+    ANSI::AbsMoveCursorRowCol(18, 21);
+    cout << window.getSize().x;
+    ANSI::AbsMoveCursorRowCol(19, 21);
+    cout << window.getSize().y;
+
     ANSI::AbsMoveCursorRowCol(1, 1); // move cursor to top left of the console
     sf::Color color = getColor(); // grab the current color
+
 
     // get the system time
     std::time_t now = std::time(nullptr);
@@ -229,9 +262,9 @@ void Game::displayInfo() const
     cout << "             ......| a" << static_cast<float>(color.a) << endl << endl;
     cout << "LastButtonPressed..| " << endl; // print here at 11,22 in the button click functions
     cout << "LastButtonReleased.| " << endl; // print here at 12,22 in the button release funtions
-    cout << "NumberofButtons....| " << getButtonCount() << endl;
+    cout << "NumberofButtons....| " << getButtonCount() << endl << endl;
     cout << "LastSaveTime.......| " << endl; // print here at 15,22
-    cout << "TimesSaved.........| " << timesSaved << endl; // print here at 16,22
+    cout << "TimesSaved.........| " << timesSaved << endl << endl; // print here at 16,22
     cout << "WindowW............| " << endl; // print here at 18,22
     cout << "WindowH............| " << endl; // print here at 19,22
 }
@@ -244,6 +277,11 @@ sf::Vector2f Game::getCursorPos_Vector2f() const
 sf::Vector2f Game::getCursorCanvasPos_Vector2f() const
 {
     return this->cursorCanvasPosition;
+}
+
+sf::Sprite Game::setCanvas(sf::Sprite newCanvas)
+{
+    return canvas = newCanvas;
 }
 
 void Game::incramentSaveCounter()
@@ -279,8 +317,11 @@ void saveButtonRelease(Game& masterGame) {
     std::string filename = "SavedDrawings/drawing_" + std::string(timestamp) + ".png";
     screenshot.saveToFile(filename);
 
-    // incrament counter
+    // incrament counter & Write Save Time Stamp
     masterGame.incramentSaveCounter();
+    ANSI::AbsMoveCursorRowCol(14, 21);
+    std::strftime(timestamp, sizeof(timestamp), "%Y/%m/%d-%H:%M:%S", &buf);
+    cout << timestamp;
 
     //animate button
     masterGame.allButtons[0]->animatePress(RELEASE);
@@ -347,51 +388,56 @@ void pencilRedButtonRelease(Game& masterGame) {
 }
 
 //==========default pencil, Green==========
-void pencilGreenButtonClick(Game& masterGame) {
+void undoButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "GREEN PENCIL";
-
-    // Change Color to Red
-    masterGame.currentColor = sf::Color::Green;
-    masterGame.setTool(new PencilTool());
+    cout << "UNDO";
 
     // change texture to pressed
     masterGame.allButtons[3]->animatePress(PRESS);
 }
-void pencilGreenButtonHold(Game& mastergame) {
+void undoButtonHold(Game& mastergame) {
 }
-void pencilGreenButtonRelease(Game& masterGame) {
+void undoButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "GREEN PENCIL";
-  
+    cout << "UNDO";
+
+    // Go to last board state (no redo so use wisely)
+    if (!masterGame.redoUndoVector.empty()) {
+        masterGame.redoUndoVector.back().setOrigin(-424, 0);
+        masterGame.setCanvas(masterGame.redoUndoVector.back());
+        masterGame.redoUndoVector.pop_back();
+    }
+
     // change texture to UnPressed
     masterGame.allButtons[3]->animatePress(RELEASE);
 }
 
-//==========default pencil, Blue==========
-void pencilBlueButtonClick(Game& masterGame) {
+//==========clearCanvas==========
+void clearCanvasButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "BLUE PENCIL";
+    cout << "CLEAR CANVAS";
 
-    masterGame.currentColor = sf::Color::Blue;
-    masterGame.setTool(new PencilTool());
-   
+    // Clear the Screen
+    sf::RectangleShape bigAssSquare(sf::Vector2f(3000,3000));
+    bigAssSquare.setFillColor(sf::Color::White);
+    masterGame.drawToCanvas(bigAssSquare);
+
     // change texture to pressed
     masterGame.allButtons[4]->animatePress(PRESS);
 }
-void pencilBlueButtonHold(Game& mastergame) {
+void clearCanvasButtonHold(Game& mastergame) {
 }
-void pencilBlueButtonRelease(Game& masterGame) {
+void clearCanvasButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "BLUE PENCIL";
+    cout << "CLEAR CANVAS";
    
     // change texture to UnPressed
     masterGame.allButtons[4]->animatePress(RELEASE);
@@ -430,23 +476,32 @@ void sizeIncreaseButtonClick(Game& masterGame) {
     ANSI::EraseInLine(RIGHT);
     cout << "SIZE INCREASE";
 
-    masterGame.brushSize += 5;
+    masterGame.brushSize += .75;
     masterGame.updateTool();
     
     // change texture to UnPressed
     masterGame.allButtons[6]->animatePress(PRESS);
 }
 void sizeIncreaseButtonHold(Game& masterGame) {
-    masterGame.brushSize += .1;
+    masterGame.brushSize += .05;
     masterGame.updateTool();
-    // hold code does not actually apply each frame, curious indeed
+
+    // Show Changing Size
+    sf::CircleShape sizeIndicator;
+    sizeIndicator.setPosition(1180, 540);
+    sizeIndicator.setRadius((float)masterGame.brushSize);
+    sizeIndicator.setFillColor(sf::Color::Transparent);
+    sizeIndicator.setOutlineColor(sf::Color::Black);
+    sizeIndicator.setOutlineThickness(1.0);
+    sizeIndicator.setOrigin(sizeIndicator.getRadius(), sizeIndicator.getRadius());
+    masterGame.getWindowReference().draw(sizeIndicator);
 }
 void sizeIncreaseButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
     cout << "SIZE INCREASE";
-    
+
     // change texture to UnPressed
     masterGame.allButtons[6]->animatePress(RELEASE);
 }
@@ -458,8 +513,8 @@ void sizeDecreaseButtonClick(Game& masterGame) {
     ANSI::EraseInLine(RIGHT);
     cout << "SIZE DECREASE";
 
-    if (masterGame.brushSize > 5) {
-        masterGame.brushSize -= 5;
+    if (masterGame.brushSize > MIN_BRUSH_SIZE) {
+        masterGame.brushSize -= .75;
         masterGame.updateTool();
     }
     
@@ -467,10 +522,23 @@ void sizeDecreaseButtonClick(Game& masterGame) {
     masterGame.allButtons[7]->animatePress(PRESS);
 }
 void sizeDecreaseButtonHold(Game& masterGame) {
-    if (masterGame.brushSize > 5) {
-        masterGame.brushSize -= -0.5f;
+    if (masterGame.brushSize > MIN_BRUSH_SIZE) {
+        masterGame.brushSize -= 0.05f;
         masterGame.updateTool();
     }
+    else {
+        masterGame.brushSize = MIN_BRUSH_SIZE;
+    }
+
+    // Show Changing Size
+    sf::CircleShape sizeIndicator;
+    sizeIndicator.setPosition(1180, 540);
+    sizeIndicator.setRadius((float)masterGame.brushSize);
+    sizeIndicator.setFillColor(sf::Color::Transparent);
+    sizeIndicator.setOutlineColor(sf::Color::Black);
+    sizeIndicator.setOutlineThickness(1.0);
+    sizeIndicator.setOrigin(sizeIndicator.getRadius(), sizeIndicator.getRadius());
+    masterGame.getWindowReference().draw(sizeIndicator);
 }
 void sizeDecreaseButtonRelease(Game& masterGame) {
     // print button on info screen
@@ -513,12 +581,13 @@ void sizeEyeDropperButtonRelease(Game& masterGame) {
 void redSliderButtonClick(Game& masterGame) {
     // Handle red slider click logic
     sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
-    float xMin = 50.0f;
-    float xMax = 50.0f + 255.0f;
+    float xMin = 30.0f;
+    float xMax = 30.0f + 255.0f;
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.r = static_cast<sf::Uint8>(normalized * 255);
         std::cout << "Red Value: " << static_cast<int>(masterGame.currentColor.r) << std::endl;
+        masterGame.allSliderPos[0] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
 }
@@ -535,12 +604,13 @@ void redSliderButtonRelease(Game& masterGame) {
 void greenSliderButtonClick(Game& masterGame) {
     // Handle green slider click logic
     sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
-    float xMin = 50.0f;
-    float xMax = 50.0f + 255.0f;
+    float xMin = 30.0f;
+    float xMax = 30.0f + 255.0f;
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.g = static_cast<sf::Uint8>(normalized * 255);
         std::cout << "Green Value: " << static_cast<int>(masterGame.currentColor.g) << std::endl;
+        masterGame.allSliderPos[1] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
 }
@@ -558,12 +628,13 @@ void greenSliderButtonRelease(Game& masterGame) {
 void blueSliderButtonClick(Game& masterGame) {
     // Handle blue slider click logic
     sf::Vector2f mousePos = masterGame.getCursorPos_Vector2f();
-    float xMin = 50.0f;
-    float xMax = 50.0f + 255.0f;
+    float xMin = 30.0f;
+    float xMax = 30.0f + 255.0f;
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.b = static_cast<sf::Uint8>(normalized * 255);
         std::cout << "Blue Value: " << static_cast<int>(masterGame.currentColor.b) << std::endl;
+        masterGame.allSliderPos[2] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
 }
@@ -586,6 +657,7 @@ void alphaSliderButtonClick(Game& masterGame) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.a = static_cast<sf::Uint8>(normalized * 255);
         std::cout << "Alpha Value: " << static_cast<int>(masterGame.currentColor.a) << std::endl;
+        masterGame.allSliderPos[3] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
 }
@@ -633,11 +705,11 @@ void initializeButtons(Game& masterGame)
     Button* pencilRed = new Button("pencilRed", "Buttons/pencilR.png", "Buttons/pencilRPressed.png", 148.0f, 148.0f, 115.0f, 115.0f, pencilRedButtonClick, pencilRedButtonHold, pencilRedButtonRelease);
     masterGame.addButton(pencilRed);
 
-    Button* pencilGreen = new Button("pencilGreen", "Buttons/pencilG.png", "Buttons/pencilGPressed.png", 148.0f, 280.0f, 115.0f, 115.0f, pencilGreenButtonClick, pencilGreenButtonHold, pencilGreenButtonRelease);
-    masterGame.addButton(pencilGreen);
+    Button* undo = new Button("undo", "Buttons/undo.png", "Buttons/undoPressed.png", 148.0f, 280.0f, 115.0f, 115.0f, undoButtonClick, undoButtonHold, undoButtonRelease);
+    masterGame.addButton(undo);
 
-    Button* pencilBlue = new Button("pencilBlue","Buttons/pencilB.png", "Buttons/pencilBPressed.png", 148.0f, 412.0f, 115.0f, 115.0f , pencilBlueButtonClick, pencilBlueButtonHold, pencilBlueButtonRelease);
-    masterGame.addButton(pencilBlue);
+    Button* clearCanvas = new Button("clearCanvas","Buttons/bombYourHardWork.png", "Buttons/bombYourHardWorkPressed.png", 148.0f, 412.0f, 115.0f, 115.0f , clearCanvasButtonClick, clearCanvasButtonHold, clearCanvasButtonRelease);
+    masterGame.addButton(clearCanvas);
 
     Button* eraser = new Button("eraser", "Buttons/eraser.png", "Buttons/eraserPressed.png", 16.0f, 148.0f, 115.0f, 115.0f, eraserButtonClick, eraserButtonHold, eraserButtonRelease);
     masterGame.addButton(eraser);
@@ -651,13 +723,13 @@ void initializeButtons(Game& masterGame)
     Button*  eyeDropper = new Button("eyeDropper","Buttons/eyeDropper.png", "Buttons/eyeDropperPressed.png", 16.0f, 16.0f, 115.0f, 115.0f, sizeEyeDropperButtonClick, sizeEyeDropperButtonHold, sizeEyeDropperButtonRelease);
     masterGame.addButton(eyeDropper);
 
-    Button* redSlider = new Button("redSlider", "Buttons/redSlider.png", "Buttons/redSliderPressed.png", 30.0f, 680.0f, 255.0f, 10.0f, redSliderButtonClick, redSliderButtonHold, redSliderButtonRelease);
+    Button* redSlider = new Button("redSlider", "Buttons/redSlider.png", "Buttons/redSliderPressed.png", 30.0f, 600.0f, 255.0f, 10.0f, redSliderButtonClick, redSliderButtonHold, redSliderButtonRelease);
     masterGame.addButton(redSlider);
 
     Button* greenSlider = new Button("greenSlider", "Buttons/greenSlider.png", "Buttons/greenSliderPressed.png", 30.0f, 640.0f, 255.0f, 10.0f, greenSliderButtonClick, greenSliderButtonHold, greenSliderButtonRelease);
     masterGame.addButton(greenSlider);
 
-    Button* blueSlider = new Button("blueSlider", "Buttons/blueSlider.png", "Buttons/blueSliderPressed.png", 30.0f, 600.0f, 255.0f, 10.0f, blueSliderButtonClick, blueSliderButtonHold, blueSliderButtonRelease);
+    Button* blueSlider = new Button("blueSlider", "Buttons/blueSlider.png", "Buttons/blueSliderPressed.png", 30.0f, 680.0f, 255.0f, 10.0f, blueSliderButtonClick, blueSliderButtonHold, blueSliderButtonRelease);
     masterGame.addButton(blueSlider);
 
     Button* alphaSlider = new Button("alphaSldier", "Buttons/alphaSlider.png", "Buttons/alphaSliderPressed.png", 30.0f, 720.0f, 255.0f, 10.0f, alphaSliderButtonClick, alphaSliderButtonHold, alphaSliderButtonRelease);

@@ -21,7 +21,7 @@ private:
     int resX;
     int resY;
 
-    std::string windowName = "Template";
+    std::string windowName = "BHP: Big Hard Paint";
     sf::RenderWindow window;
 
     sf::Event event;
@@ -41,6 +41,8 @@ private:
 public:
     std::vector<Button*> allButtons;
     sf::Color currentColor;
+    std::vector<float> allSliderPos;
+    std::vector<sf::Sprite> redoUndoVector;
 
     float brushSize = 5;
 
@@ -63,6 +65,8 @@ public:
 
     sf::Vector2f getCursorPos_Vector2f() const;
     sf::Vector2f getCursorCanvasPos_Vector2f() const;
+
+    sf::Sprite setCanvas(sf::Sprite newCanvas);
 
     void incramentSaveCounter();
 };

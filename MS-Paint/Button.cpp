@@ -1,6 +1,5 @@
 #include "Button.h"
 
-
 //default constructor
 
 Button::Button() {
@@ -10,6 +9,7 @@ Button::Button() {
 }
 
 Button::Button(std::string name, const std::string& textureFilePath, const std::string& texturePressedFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick, std::function<void(class Game&)> newOnHold, std::function<void(class Game&)> newOnRelease) {
+	std::cout << "\033[25;1H";
 	if (!buttonTexture.loadFromFile(textureFilePath)) {
 		std::cerr << "Failed to load texture from: " << textureFilePath << "\n";
 	}
