@@ -62,4 +62,21 @@ private:
 	sf::Vector2f lastPosition; // Used to determine where the rectangle should extend to.
 };
 
+class EyeDropper : public Tool {
+public:
+	~EyeDropper() override;
+
+	void toolSelect(class Game& currentGame) override;
+	void toolUpdate(class Game& currentGame) override;
+	void toolDeselect(class Game& currentGame) override;
+
+	void mouseDown(class Game& currentGame, const sf::Vector2f mousePosition) override;
+	void mouseDrag(class Game& currentGame, const sf::Vector2f mousePosition) override;
+	void mouseMotion(class Game& currentGame, const sf::Vector2f mousePosition) override;
+	void mouseUp(class Game& currentGame, const sf::Vector2f mousePosition) override;
+
+private:
+	sf::CircleShape colorIndicator;
+};
+
 #endif // !BASIC_TOOLS_H

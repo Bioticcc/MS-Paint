@@ -8,18 +8,23 @@
 #include <functional>
 #include <vector> 
 
+typedef enum CLICKSTATE {
+	PRESS,
+	RELEASE
+};
 // Not sure if this should be abstract or use function ptrs...
 class Button
 {
 private:
 	//button visuals
 	sf::Texture buttonTexture;
+	sf::Texture buttonTexturePressed;
 	sf::RectangleShape buttonShape;
 
 	//button position on screen
 	float posX, posY;
 	sf::Vector2f size;
-
+	std::string name;
 public:
 	bool clicked = false;
 
@@ -32,7 +37,7 @@ public:
 	Button();
 	//constructor
 	
-	Button(const std::string& textureFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick = nullptr, std::function<void(class Game&)> newOnHold = nullptr, std::function<void(class Game&)> newOnRelease = nullptr);
+	Button(std::string name, const std::string& textureFilePath, const std::string& texturePressedFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick = nullptr, std::function<void(class Game&)> newOnHold = nullptr, std::function<void(class Game&)> newOnRelease = nullptr);
 	/*
 	Button(const std::string& textureFilePath, float X, float Y, std::function<void()> functionPtr) {
 		if (!buttonIconTexture.loadFromFile(textureFilePath)) {
@@ -59,6 +64,7 @@ public:
 	//getters-setters
 	float getPosX();
 	float getPosY();
+	std::string getName() const;
 	sf::RectangleShape getIcon();
 	void setPos(float x, float y);
 
@@ -67,6 +73,8 @@ public:
 	bool isMouseHoveringOverButton(const sf::Vector2f& cursorPos);
 
 	void draw(sf::RenderWindow& window);
+
+	void animatePress(CLICKSTATE action);
 
 };
 

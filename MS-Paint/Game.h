@@ -37,10 +37,12 @@ private:
 
     std::unique_ptr<Tool> currentTool = nullptr; // Sets the default tool to be a Pencil.
 
+    int timesSaved;
 public:
     std::vector<Button*> allButtons;
     sf::Color currentColor;
-    int brushSize = 5;
+
+    float brushSize = 5;
 
     Game();
 
@@ -55,6 +57,14 @@ public:
 
     void drawToCanvas(sf::Shape& toStamp);
 
+    sf::Color getColor() const;
+    int getButtonCount() const;
+    void displayInfo() const;
+
+    sf::Vector2f getCursorPos_Vector2f() const;
+    sf::Vector2f getCursorCanvasPos_Vector2f() const;
+
+    void incramentSaveCounter();
 };
 
 #include "basic_tools.h" // F***** up 6OD9^MN circular inheritance weird SH|T
@@ -62,4 +72,3 @@ public:
 void initializeButtons(Game&);
 
 #endif // !GAME_H
-

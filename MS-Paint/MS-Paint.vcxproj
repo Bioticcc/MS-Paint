@@ -171,6 +171,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ANSIescapeCode.h" />
     <ClInclude Include="basic_tools.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />

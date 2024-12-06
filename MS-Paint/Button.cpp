@@ -6,16 +6,23 @@
 Button::Button() {
 	posX = 0;
 	posY = 0;
+	name = "";
 }
 
-Button::Button(const std::string& textureFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick, std::function<void(class Game&)> newOnHold, std::function<void(class Game&)> newOnRelease) {
+Button::Button(std::string name, const std::string& textureFilePath, const std::string& texturePressedFilePath, float X, float Y, float sizeX, float sizeY, std::function<void(class Game&)> newOnClick, std::function<void(class Game&)> newOnHold, std::function<void(class Game&)> newOnRelease) {
 	if (!buttonTexture.loadFromFile(textureFilePath)) {
 		std::cerr << "Failed to load texture from: " << textureFilePath << "\n";
 	}
 	else {
 		buttonShape.setTexture(&buttonTexture);
 	}
+	
+	if (!buttonTexturePressed.loadFromFile(texturePressedFilePath)) {
+		std::cerr << "Failed to load texture from: " << texturePressedFilePath << "\n";
+	}
+
 	//buttonIcon.setSize(sf::Vector2f(texture.getSize().x, texture.getSize().y));
+	name = name;
 	size.x = sizeX;
 	size.y = sizeY;
 	buttonShape.setSize(size);
@@ -31,6 +38,7 @@ Button::Button(const std::string& textureFilePath, float X, float Y, float sizeX
 //copy constructor
 
 Button::Button(const Button& B) {
+	name = B.name;
 	buttonTexture= B.buttonTexture;
 	buttonShape = B.buttonShape;
 	posX = B.posX;
@@ -51,6 +59,8 @@ Button::~Button() { return; }
 float Button::getPosX() { return posX; }
 
 float Button::getPosY() { return posY; }
+
+std::string Button::getName() const { return name; }
 
 sf::RectangleShape Button::getIcon() { return buttonShape; }
 
@@ -85,4 +95,16 @@ bool Button::isMouseHoveringOverButton(const sf::Vector2f& cursorPos) {
 
 void Button::draw(sf::RenderWindow& window) {
 	window.draw(buttonShape);
+}
+
+void Button::animatePress(CLICKSTATE action)
+{
+	switch (action) {
+	case PRESS:
+		buttonShape.setTexture(&buttonTexturePressed);
+		break;
+	case RELEASE:
+		buttonShape.setTexture(&buttonTexture);
+		break;
+	}
 }
