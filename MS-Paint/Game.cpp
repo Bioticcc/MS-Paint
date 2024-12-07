@@ -9,6 +9,9 @@ using std::endl;
 #define SLIDER_DOT_RADIUS 8.f
 #define SLIDER_DOT_RESOLUTION 12.f
 
+#define CANVAS_W 1942.0f
+#define CANVAS_H 1080.0f
+
 Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowName)/*, allButtons(&window)*/ {
     if (!toolbarTexture.loadFromFile("Backgrounds/Toolbar.png")) {
         std::cerr << "Failed to load background texture\n";
@@ -29,13 +32,13 @@ Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowN
     this->currentColor = sf::Color(127,127,127,255);
     this->setTool(new PencilTool()); // Set default tool
 
+    initializeButtons(*this);
 }
 
 void Game::runGame() {
     using std::cout; //skull emoji
     //currentTool = 1; //by default our starting tool will be 1 (select, ie standard cursor)
 
-    initializeButtons(*this);
 
     //Edging Variables
     const bool PRESSED = true;
@@ -132,12 +135,9 @@ void Game::runGame() {
 
                 // Save Canvas State for undo and Redo
                 // Here for the reason of saving states after a full line is drawn
-                if (cursorCanvasPosition.x > 0 && cursorCanvasPosition.x < 1500
-                    && cursorCanvasPosition.y > 0 && cursorCanvasPosition.y < 1080) {
-                    sf::Sprite screenshotSprite(getCanvas());
-                    redoUndoVector.push_back(screenshotSprite);/*
-                    sf::Image screenshot = getCanvas().getTexture()->copyToImage();
-                    screenshot.saveToFile("CanvasStates/state_" + std::to_string(getCanvasStatesSaved()) + ".png");*/
+                if (cursorCanvasPosition.x > 0 && cursorCanvasPosition.x < CANVAS_W
+                    && cursorCanvasPosition.y > 0 && cursorCanvasPosition.y < CANVAS_H) {
+                    redoUndoVector.push_back(canvas);
                 }
             }
             // Rendering
@@ -414,7 +414,7 @@ void pencilRedButtonRelease(Game& masterGame) {
     masterGame.allButtons[2]->animatePress(RELEASE);
 }
 
-//==========default pencil, Green==========
+//==========UNDO ACTION==========
 void undoButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
@@ -422,8 +422,13 @@ void undoButtonClick(Game& masterGame) {
 
     // Go to last board state (no redo so use wisely)
     if (!masterGame.redoUndoVector.empty()) {
-        masterGame.setCanvas(masterGame.redoUndoVector.back());
-        masterGame.redoUndoVector.pop_back();
+       /* sf::RectangleShape undidCanvas;
+        undidCanvas.setSize(sf::Vector2f(CANVAS_W,CANVAS_H));
+        undidCanvas.setOrigin(sf::Vector2f(CANVAS_W, CANVAS_H));
+        undidCanvas.rotate(180);
+        undidCanvas.setTexture(masterGame.redoUndoVector.back().getTexture());
+        masterGame.drawToCanvas(undidCanvas);
+        masterGame.redoUndoVector.pop_back();*/
         cout << "UNDO " << masterGame.getCanvasStatesSaved();
     }
     else {
@@ -432,8 +437,8 @@ void undoButtonClick(Game& masterGame) {
 
 
     // Silly spin animation
-    float buttonSize = masterGame.allButtons[3]->getIcon().getSize().x;
-    masterGame.allButtons[3]->getIcon().setOrigin(buttonSize / 2, buttonSize / 2);
+    /*float buttonSize = masterGame.allButtons[3]->getIcon().getSize().x;
+    masterGame.allButtons[3]->getIcon().setOrigin(buttonSize / 2, buttonSize / 2);*/
     
     // change texture to pressed
     masterGame.allButtons[3]->animatePress(PRESS);
@@ -441,7 +446,7 @@ void undoButtonClick(Game& masterGame) {
 }
 void undoButtonHold(Game& mastergame) {
 
-    mastergame.allButtons[3]->getIcon().rotate(1);
+    //mastergame.allButtons[3]->getIcon().rotate(1);
 }
 
 void undoButtonRelease(Game& masterGame) {
@@ -470,6 +475,7 @@ void clearCanvasButtonClick(Game& masterGame) {
 }
 void clearCanvasButtonHold(Game& mastergame) {
 }
+
 void clearCanvasButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
@@ -520,7 +526,7 @@ void sizeIncreaseButtonClick(Game& masterGame) {
     masterGame.allButtons[6]->animatePress(PRESS);
 }
 void sizeIncreaseButtonHold(Game& masterGame) {
-    masterGame.brushSize += .05;
+    masterGame.brushSize += .1;
     masterGame.updateTool();
 
     // Show Changing Size
@@ -560,7 +566,7 @@ void sizeDecreaseButtonClick(Game& masterGame) {
 }
 void sizeDecreaseButtonHold(Game& masterGame) {
     if (masterGame.brushSize > MIN_BRUSH_SIZE) {
-        masterGame.brushSize -= 0.05f;
+        masterGame.brushSize -= 0.1f;
         masterGame.updateTool();
     }
     else {

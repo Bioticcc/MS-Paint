@@ -27,6 +27,12 @@
     <ClCompile Include="basic_tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestCases.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testCases.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

@@ -14,6 +14,7 @@
 //Including basic_tools.h directly causes circular dependencies, and forward declaring Game class
 // prevents us from calling Game related methods (AFAIK)
 class Tool;
+class TestCases;
 class Game
 {
 
@@ -38,6 +39,7 @@ private:
     std::unique_ptr<Tool> currentTool = nullptr; // Sets the default tool to be a Pencil.
 
     int timesSaved;
+    friend TestCases;
 public:
     std::vector<Button*> allButtons;
     sf::Color currentColor;
