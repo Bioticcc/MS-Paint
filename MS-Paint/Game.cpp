@@ -30,17 +30,16 @@ Programmed by: Bioticcc
                david_ac_leon
 
 function:
-    Button::isMouseHoveringOverButton
+    Gamge::Game()
 
 description:
-  returns true if the mouse is hovering over the given button, false otherwise.
+    Constructor for the game class. Initializes variables, loads all buttons and toolbar.
 
 parameters:
-    const sf::Vector2f& cursorPos - Current cursor position
+    none
 
 returns:
-    True - The current mouse position is on top of the button
-    False - otherwise
+    none
 */
 Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowName)/*, allButtons(&window)*/ {
     if (!toolbarTexture.loadFromFile("Backgrounds/Toolbar.png")) {
@@ -65,6 +64,25 @@ Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowN
     initializeButtons(*this);
 }
 
+
+/*
+Programmed by: Bioticcc
+    Edited by: Inventor4life
+               FloatingToa5t
+               david_ac_leon
+
+function:
+    void Game::runGame()
+
+description:
+    Entry point for the application. Launches and manages a BigHard Paint window. Returns when the window is closed.
+
+parameters:
+    none
+
+returns:
+    none
+*/
 void Game::runGame() {
     using std::cout; //skull emoji
     //currentTool = 1; //by default our starting tool will be 1 (select, ie standard cursor)
@@ -195,6 +213,25 @@ void Game::runGame() {
     }
 }
 
+
+/*
+Programmed by: Bioticcc
+    Edited by: Inventor4life
+               FloatingToa5t
+               david_ac_leon
+
+function:
+    void Game::setTool(Tool* newTool)
+
+description:
+    Sets the window's current active tool (CAT™) to the tool passed.
+
+parameters:
+    Tool* newTool - Pointer to a desired Tool object located in heap
+
+returns:
+    None
+*/
 void Game::setTool(Tool* newTool)
 {
     if (currentTool.get() != nullptr) currentTool.get()->toolDeselect(*this);
@@ -202,6 +239,26 @@ void Game::setTool(Tool* newTool)
     currentTool.get()->toolSelect(*this);
 }
 
+
+/*
+Programmed by: Bioticcc
+    Edited by: Inventor4life
+               FloatingToa5t
+               david_ac_leon
+
+function:
+    Game::updateTool(void)
+
+description:
+    Calls the relevant tool toolUpdate function. 
+    Should be called whenever an important value is changed (color, size) (etc...)
+
+parameters:
+    None
+
+returns:
+    None
+*/
 void Game::updateTool(void) {
     currentTool.get()->toolUpdate(*this);
 }
