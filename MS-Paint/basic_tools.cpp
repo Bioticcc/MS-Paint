@@ -195,6 +195,11 @@ void PencilTool::mouseUp(Game& currentGame, const sf::Vector2f mousePosition)
 
 }
 
+sf::CircleShape PencilTool::getDot()
+{
+	return dot;
+}
+
 EyeDropper::~EyeDropper()
 {
 }

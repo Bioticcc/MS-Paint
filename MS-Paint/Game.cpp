@@ -313,11 +313,34 @@ void Game::incramentSaveCounter()
     timesSaved++;
 }
 
+bool Game::saveCanvasToFile()
+{
+    // create the image of the canvas
+    sf::Image screenshot = getCanvas().getTexture()->copyToImage();
+    std::time_t now = std::time(nullptr);
+    struct tm buf;
+    localtime_s(&buf, &now);
+    char timestamp[20];
+    std::strftime(timestamp, sizeof(timestamp), "%Y%m%d%H%M%S", &buf);
+    std::string filename = "SavedDrawings/drawing_" + std::string(timestamp) + ".png";
+
+    // incrament counter & Write Save Time Stamp
+    incramentSaveCounter();
+    ANSI::AbsMoveCursorRowCol(15, 21);
+    std::strftime(timestamp, sizeof(timestamp), "%Y/%m/%d-%H:%M:%S", &buf);
+    cout << timestamp;
+
+    // save the file and return success bool
+    return screenshot.saveToFile(filename);
+}
+
 void saveButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
     cout << "SAVE";
+
+    masterGame.saveCanvasToFile();
 
     //animate button
     masterGame.allButtons[0]->animatePress(PRESS);
@@ -335,20 +358,6 @@ void saveButtonRelease(Game& masterGame) {
     // Under the grace our Lord and Savior Ethan Goode, he has figured out how
     // to take screenshots on the canvas only rather than the entire window
     // using the getCanvas() func which returns a reference
-    sf::Image screenshot = masterGame.getCanvas().getTexture()->copyToImage();
-    std::time_t now = std::time(nullptr);
-    struct tm buf;
-    localtime_s(&buf, &now);
-    char timestamp[20];
-    std::strftime(timestamp, sizeof(timestamp), "%Y%m%d%H%M%S", &buf);
-    std::string filename = "SavedDrawings/drawing_" + std::string(timestamp) + ".png";
-    screenshot.saveToFile(filename);
-
-    // incrament counter & Write Save Time Stamp
-    masterGame.incramentSaveCounter();
-    ANSI::AbsMoveCursorRowCol(15, 21);
-    std::strftime(timestamp, sizeof(timestamp), "%Y/%m/%d-%H:%M:%S", &buf);
-    cout << timestamp;
 
     //animate button
     masterGame.allButtons[0]->animatePress(RELEASE);
@@ -526,7 +535,7 @@ void sizeIncreaseButtonClick(Game& masterGame) {
     masterGame.allButtons[6]->animatePress(PRESS);
 }
 void sizeIncreaseButtonHold(Game& masterGame) {
-    masterGame.brushSize += .1;
+    masterGame.brushSize += .2;
     masterGame.updateTool();
 
     // Show Changing Size
@@ -566,7 +575,7 @@ void sizeDecreaseButtonClick(Game& masterGame) {
 }
 void sizeDecreaseButtonHold(Game& masterGame) {
     if (masterGame.brushSize > MIN_BRUSH_SIZE) {
-        masterGame.brushSize -= 0.1f;
+        masterGame.brushSize -= 0.2f;
         masterGame.updateTool();
     }
     else {
@@ -737,8 +746,6 @@ void initializeButtons(Game& masterGame)
             buttons to change their textures and make it easier to add different button types.
     
     */
-    float rowFactor = 132;
-    float colFactor = 132;
 
     //BASIC BUTTONS
     Button* save = new Button("save","Buttons/save.png","Buttons/savePressed.png", 118.0f, 785.0f, 210.0f, 100.0f, saveButtonClick, saveButtonHold, saveButtonRelease);

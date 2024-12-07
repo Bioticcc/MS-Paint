@@ -10,6 +10,6 @@ public:
     void testPickTool();
     void testDraw();
     void testChangeColor();
-    void testButtonPress();
+    void testAddButton();
 private:
 };

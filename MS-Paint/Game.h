@@ -41,11 +41,12 @@ private:
     int timesSaved;
     friend TestCases;
 public:
+    // this is bad practice, though making setters and
+    // getters for some of these caused some major issues
     std::vector<Button*> allButtons;
     sf::Color currentColor;
     std::vector<float> allSliderPos;
     std::vector<sf::Sprite> redoUndoVector;
-
     float brushSize = 5;
 
     Game();
@@ -74,7 +75,7 @@ public:
     int getCanvasStatesSaved() const;
     void incramentSaveCounter();
 
-
+    bool saveCanvasToFile();
 };
 
 #include "basic_tools.h" // F***** up 6OD9^MN circular inheritance weird SH|T

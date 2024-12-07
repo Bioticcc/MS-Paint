@@ -55,6 +55,7 @@ public:
 	void mouseMotion(class Game& currentGame, const sf::Vector2f mousePosition) override;
 	void mouseUp(class Game& currentGame, const sf::Vector2f mousePosition) override;
 
+	sf::CircleShape getDot();
 private:
 	sf::CircleShape dot; // displayed on mousedown and after lines, adds rounded corners to rectangles
 	sf::RectangleShape line; // The lines connecting the dots, with thickness of 2x brush size
