@@ -1,8 +1,19 @@
+// Programmed by Bioticcc
+//  Edited by Inventor4life
+//            FloatingToa5t
+//            david_ac_leon
+//        
+// Assignment: PA9
+// File: Game.cpp
+// Description:
+//  Contains all functions needed to use the game class.
+//     
+
 #include "Game.h"
 #include "ANSIescapeCode.h"
 #include "string"
 
-using std::cout;
+
 using std::endl;
 
 #define MIN_BRUSH_SIZE 1.f
@@ -12,6 +23,25 @@ using std::endl;
 #define CANVAS_W 1942.0f
 #define CANVAS_H 1080.0f
 
+/*
+Programmed by: Bioticcc
+    Edited by: Inventor4life
+               FloatingToa5t
+               david_ac_leon
+
+function:
+    Button::isMouseHoveringOverButton
+
+description:
+  returns true if the mouse is hovering over the given button, false otherwise.
+
+parameters:
+    const sf::Vector2f& cursorPos - Current cursor position
+
+returns:
+    True - The current mouse position is on top of the button
+    False - otherwise
+*/
 Game::Game() : resX(1920), resY(1080), window(sf::VideoMode(resX, resY), windowName)/*, allButtons(&window)*/ {
     if (!toolbarTexture.loadFromFile("Backgrounds/Toolbar.png")) {
         std::cerr << "Failed to load background texture\n";
@@ -207,6 +237,7 @@ int Game::getButtonCount() const
 
 void Game::displayInfo() const
 {
+    using std::cout;
     /* EXAMPLE INFO DISPLAY
     SystemTime: Yadda yadda hooey hooey
     CursorPos..........| 123, 1234
@@ -241,9 +272,9 @@ void Game::displayInfo() const
 
     // Print window Size
     ANSI::AbsMoveCursorRowCol(18, 21);
-    cout << window.getSize().x;
+   std::cout << window.getSize().x;
     ANSI::AbsMoveCursorRowCol(19, 21);
-    cout << window.getSize().y;
+   std::cout << window.getSize().y;
 
     ANSI::AbsMoveCursorRowCol(1, 1); // move cursor to top left of the console
     sf::Color color = getColor(); // grab the current color
@@ -317,7 +348,7 @@ void saveButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "SAVE";
+   std::cout << "SAVE";
 
     //animate button
     masterGame.allButtons[0]->animatePress(PRESS);
@@ -348,7 +379,7 @@ void saveButtonRelease(Game& masterGame) {
     masterGame.incramentSaveCounter();
     ANSI::AbsMoveCursorRowCol(15, 21);
     std::strftime(timestamp, sizeof(timestamp), "%Y/%m/%d-%H:%M:%S", &buf);
-    cout << timestamp;
+   std::cout << timestamp;
 
     //animate button
     masterGame.allButtons[0]->animatePress(RELEASE);
@@ -363,7 +394,7 @@ void pencilButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "BLACK PENCIL";
+   std::cout << "BLACK PENCIL";
 
     // Change Color
     masterGame.currentColor = sf::Color::Black;
@@ -381,7 +412,7 @@ void pencilButtonHold(Game& mastergame) {
 void pencilButtonRelease(Game& masterGame) {
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "BLACK PENCIL";
+   std::cout << "BLACK PENCIL";
 
     // change texture to UnPressed
     masterGame.allButtons[1]->animatePress(RELEASE);
@@ -392,7 +423,7 @@ void pencilRedButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "RED PENCIL";
+   std::cout << "RED PENCIL";
 
     // change color to black
     masterGame.currentColor = sf::Color::Red;
@@ -408,7 +439,7 @@ void pencilRedButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "RED PENCIL";
+   std::cout << "RED PENCIL";
 
     // change texture to UnPressed
     masterGame.allButtons[2]->animatePress(RELEASE);
@@ -429,10 +460,10 @@ void undoButtonClick(Game& masterGame) {
         undidCanvas.setTexture(masterGame.redoUndoVector.back().getTexture());
         masterGame.drawToCanvas(undidCanvas);
         masterGame.redoUndoVector.pop_back();*/
-        cout << "UNDO " << masterGame.getCanvasStatesSaved();
+       std::cout << "UNDO " << masterGame.getCanvasStatesSaved();
     }
     else {
-        cout << "UNDO (EMPTY)";
+       std::cout << "UNDO (EMPTY)";
     }
 
 
@@ -463,7 +494,7 @@ void clearCanvasButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "CLEAR CANVAS";
+   std::cout << "CLEAR CANVAS";
 
     // Clear the Screen
     sf::RectangleShape bigAssSquare(sf::Vector2f(3000,3000));
@@ -480,7 +511,7 @@ void clearCanvasButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "CLEAR CANVAS";
+   std::cout << "CLEAR CANVAS";
    
     // change texture to UnPressed
     masterGame.allButtons[4]->animatePress(RELEASE);
@@ -491,7 +522,7 @@ void eraserButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "ERASER";
+   std::cout << "ERASER";
 
     // change to eraser tool
     masterGame.setTool(new EraserTool());
@@ -506,7 +537,7 @@ void eraserButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "ERASER";
+   std::cout << "ERASER";
 
     // change texture to UnPressed
     masterGame.allButtons[5]->animatePress(RELEASE);
@@ -517,7 +548,7 @@ void sizeIncreaseButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "SIZE INCREASE";
+   std::cout << "SIZE INCREASE";
 
     masterGame.brushSize += .75;
     masterGame.updateTool();
@@ -543,7 +574,7 @@ void sizeIncreaseButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "SIZE INCREASE";
+   std::cout << "SIZE INCREASE";
 
     // change texture to UnPressed
     masterGame.allButtons[6]->animatePress(RELEASE);
@@ -554,7 +585,7 @@ void sizeDecreaseButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "SIZE DECREASE";
+   std::cout << "SIZE DECREASE";
 
     if (masterGame.brushSize > MIN_BRUSH_SIZE) {
         masterGame.brushSize -= .75;
@@ -587,7 +618,7 @@ void sizeDecreaseButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "SIZE DECREASE";
+   std::cout << "SIZE DECREASE";
 
     // change texture to UnPressed
     masterGame.allButtons[7]->animatePress(RELEASE);
@@ -598,7 +629,7 @@ void sizeEyeDropperButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "EYEDROPPER";
+   std::cout << "EYEDROPPER";
     
     // Change Tool to EyeDropper
     masterGame.setTool(new EyeDropper());
@@ -613,7 +644,7 @@ void sizeEyeDropperButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "EYEDROPPER";
+   std::cout << "EYEDROPPER";
    
     // change texture to UnPressed
     masterGame.allButtons[8]->animatePress(RELEASE);
@@ -714,10 +745,23 @@ void alphaSliderButtonRelease(Game& masterGame) {
     // Nothing extra needed for release
 }
 
-/*
-Programmed by: Inventor4life
-    Creates and initializes all buttons.
-*/
+// Programmed by Bioticcc
+//  Edited by Inventor4life
+//            FloatingToa5t
+//            david_ac_leon
+// 
+// function:
+//  void initializeButtons( Game& thisGame )
+// 
+// description:
+//  creates all application buttons and inserts them into the allButtons vector
+// 
+// parameters:
+//  Game& thisGame - Reference to game to insert buttons for.
+// 
+// returns:
+//  nothing
+//
 void initializeButtons(Game& masterGame)
 {
     /*

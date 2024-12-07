@@ -81,8 +81,18 @@ void Button::setButtonIcon(sf::Texture texture) {
 /*
 Programmed by: Bioticcc
 	Edited by: Inventor4life
+			   FloatingToa5t
+               david_ac_leon
 
-	returns true if the mouse position is within the bounds of the button.
+function:
+	Button::isMouseHoveringOverButton
+
+parameters:
+	const sf::Vector2f& cursorPos - Current cursor position
+
+returns:
+	True - The current mouse position is on top of the button
+	False - otherwise
 */
 bool Button::isMouseHoveringOverButton(const sf::Vector2f& cursorPos) {
 	
