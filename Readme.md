@@ -1,5 +1,6 @@
 Necessary README file
 
+Video: (!!!) https://youtu.be/BvZv1glZRBs?si=TOWue5uCtQBBLQ6L
 
 # Bighard Paint
 Bighard Paint is an image creation tool similar to Microsoft Paint or Photoshop. What it lacks in power, functionality and design, it makes up for in ( &nbsp; //TODO: Find something. Anything. &nbsp; ). Bighard Paint is a demonstration of the inheritance and polymorphism concepts we learned in CptS 122, as well as a review of the commenting and program design practices covered in CptS 121.
