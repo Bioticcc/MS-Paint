@@ -66,9 +66,13 @@ public:
     sf::Vector2f getCursorPos_Vector2f() const;
     sf::Vector2f getCursorCanvasPos_Vector2f() const;
 
-    sf::Sprite setCanvas(sf::Sprite newCanvas);
+    sf::Sprite& getCanvas();
+    void setCanvas(sf::Sprite newCanvas);
 
+    int getCanvasStatesSaved() const;
     void incramentSaveCounter();
+
+
 };
 
 #include "basic_tools.h" // F***** up 6OD9^MN circular inheritance weird SH|T

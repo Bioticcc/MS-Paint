@@ -65,7 +65,7 @@ public:
 	float getPosX();
 	float getPosY();
 	std::string getName() const;
-	sf::RectangleShape getIcon();
+	sf::RectangleShape& getIcon();
 	void setPos(float x, float y);
 
 	void setButtonIcon(sf::Texture texture);
@@ -75,6 +75,7 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	void animatePress(CLICKSTATE action);
+
 
 };
 

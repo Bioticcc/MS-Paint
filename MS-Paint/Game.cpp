@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "ANSIescapeCode.h"
+#include "string"
 
 using std::cout;
 using std::endl;
@@ -61,104 +62,107 @@ void Game::runGame() {
         // Display window info
         displayInfo();
 
-        // Edging Code
-        mouseLeftCurrentState = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-        if (mouseLeftPreviousState != mouseLeftCurrentState) { // True for changes in state. Opportunity for some horrific one-line ifs
-            if (mouseLeftPreviousState == !PRESSED) {
-                mouseLeftPosEdge = true;
+        if (window.hasFocus()) {
+            // Edging Code
+            mouseLeftCurrentState = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+            if (mouseLeftPreviousState != mouseLeftCurrentState) { // True for changes in state. Opportunity for some horrific one-line ifs
+                if (mouseLeftPreviousState == !PRESSED) {
+                    mouseLeftPosEdge = true;
+                }
+                else {
+                    mouseLeftNegEdge = true;
+                }
             }
             else {
-                mouseLeftNegEdge = true;
+                mouseLeftPosEdge = false;
+                mouseLeftNegEdge = false;
             }
-        }
-        else {
-            mouseLeftPosEdge = false;
-            mouseLeftNegEdge = false;
-        }
-        mouseLeftPreviousState = mouseLeftCurrentState;
+            mouseLeftPreviousState = mouseLeftCurrentState;
 
 
-        // Code to handle mouse clicks and motion. Undefined behavior if mouse goes off-window.
-        cursorPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
-        if (canvas.getGlobalBounds().contains(cursorPosition)) { // If mouse on Canvas
-            cursorCanvasPosition = cursorPosition - canvas.getPosition();
-            cursorCanvasPosition.y = 1080 - cursorCanvasPosition.y;
-            currentTool.get()->mouseMotion(*this, cursorPosition);
+            // Code to handle mouse clicks and motion. Undefined behavior if mouse goes off-window.
+            cursorPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+            if (canvas.getGlobalBounds().contains(cursorPosition)) { // If mouse on Canvas
+                cursorCanvasPosition = cursorPosition - canvas.getPosition();
+                cursorCanvasPosition.y = 1080 - cursorCanvasPosition.y;
+                currentTool.get()->mouseMotion(*this, cursorPosition);
 
-            if (mouseLeftPosEdge) {
-                //cout << "mouse pos (x,y): " << cursorCanvasPosition.x << "," << cursorCanvasPosition.y << std::endl;
-                currentTool.get()->mouseDown(*this, cursorCanvasPosition);
-                currentTool.get()->in_use = true;
+                if (mouseLeftPosEdge) {
+                    //cout << "mouse pos (x,y): " << cursorCanvasPosition.x << "," << cursorCanvasPosition.y << std::endl;
+                    currentTool.get()->mouseDown(*this, cursorCanvasPosition);
+                    currentTool.get()->in_use = true;
+                }
+                else if (mouseLeftCurrentState == PRESSED && currentTool.get()->in_use) {
+                    // Notice: This causes a bug where the drag stops before hitting the edge of the canvas, as the mouse was
+                    //  Off-canvas in the next frame. Only noticeable on slow computers or fast canvas strokes.
+                    currentTool.get()->mouseDrag(*this, cursorCanvasPosition);
+                }
             }
-            else if (mouseLeftCurrentState == PRESSED && currentTool.get()->in_use) {
-                // Notice: This causes a bug where the drag stops before hitting the edge of the canvas, as the mouse was
-                //  Off-canvas in the next frame. Only noticeable on slow computers or fast canvas strokes.
-                currentTool.get()->mouseDrag(*this, cursorCanvasPosition);
-            }
-        }
-        else if (toolbar.getGlobalBounds().contains(cursorPosition)) { // If mouse on Toolbar
-            if (mouseLeftPosEdge) { // true for rising edge of click
-                //cout << "mouse pos (x,y): " << cursorPosition.x << "," << cursorPosition.y << std::endl;
+            else if (toolbar.getGlobalBounds().contains(cursorPosition)) { // If mouse on Toolbar
+                if (mouseLeftPosEdge) { // true for rising edge of click
+                    //cout << "mouse pos (x,y): " << cursorPosition.x << "," << cursorPosition.y << std::endl;
 
-                for (Button* i : allButtons) {
-                    if (i->isMouseHoveringOverButton(cursorPosition)) {
-                        if (i->onClick != nullptr) i->onClick(*this); // Pass the Game object, so buttons can trigger anything.
-                        i->clicked = true;
+                    for (Button* i : allButtons) {
+                        if (i->isMouseHoveringOverButton(cursorPosition)) {
+                            if (i->onClick != nullptr) i->onClick(*this); // Pass the Game object, so buttons can trigger anything.
+                            i->clicked = true;
+                        }
+                    }
+                }
+                else if (mouseLeftCurrentState == PRESSED) { // Called once per frame that mouse left is held down after clicking button, while mouse is in toolbar.
+                    for (Button* i : allButtons) {
+                        if (i->clicked == true && i->onHold != nullptr) {
+                            i->onHold(*this); // Pass the Game object, so buttons can trigger anything.
+                        }
                     }
                 }
             }
-            else if (mouseLeftCurrentState == PRESSED) { // Called once per frame that mouse left is held down after clicking button, while mouse is in toolbar.
+
+            if (mouseLeftNegEdge) { // True only for falling edge of click (i.e. on release)
                 for (Button* i : allButtons) {
-                    if (i->clicked == true && i->onHold != nullptr) {
-                        i->onHold(*this); // Pass the Game object, so buttons can trigger anything.
+                    if (i->clicked == true) {
+                        if (i->onRelease != nullptr) i->onRelease(*this);
+                        i->clicked = false;
                     }
                 }
-            }
-        }
+                if (currentTool.get()->in_use) {
+                    currentTool.get()->mouseUp(*this, cursorCanvasPosition); // Passes the last valid mouse position.
+                    currentTool.get()->in_use = false;
+                }
 
-        if (mouseLeftNegEdge) { // True only for falling edge of click (i.e. on release)
+                // Save Canvas State for undo and Redo
+                // Here for the reason of saving states after a full line is drawn
+                if (cursorCanvasPosition.x > 0 && cursorCanvasPosition.x < 1500
+                    && cursorCanvasPosition.y > 0 && cursorCanvasPosition.y < 1080) {
+                    sf::Sprite screenshotSprite(getCanvas());
+                    redoUndoVector.push_back(screenshotSprite);/*
+                    sf::Image screenshot = getCanvas().getTexture()->copyToImage();
+                    screenshot.saveToFile("CanvasStates/state_" + std::to_string(getCanvasStatesSaved()) + ".png");*/
+                }
+            }
+            // Rendering
+            window.display(); // So that changes made to window in tool can be seen.
+            window.clear();
+            window.draw(canvas);
+            window.draw(toolbar);
             for (Button* i : allButtons) {
-                if (i->clicked == true) {
-                    if(i->onRelease != nullptr) i->onRelease(*this);
-                    i->clicked = false;
-                }
+                i->draw(window);
             }
-            if (currentTool.get()->in_use) {
-                currentTool.get()->mouseUp(*this, cursorCanvasPosition); // Passes the last valid mouse position.
-                currentTool.get()->in_use = false;
+
+            // Display the Current Canvas Color
+            sf::RectangleShape colorPreview;
+            colorPreview.setSize(sf::Vector2f(100, 100)); // Set preview size
+            colorPreview.setPosition(315.0f, 595.0f); // Position below the sliders
+            colorPreview.setFillColor(currentColor); // Update the color preview
+            window.draw(colorPreview);
+
+            // Draw the Slider Dots
+            for (int i = 0; i < 4; i++) {
+                sliderDot.setPosition(allSliderPos[i] + 30.0f, 605.f + (40 * i));
+                window.draw(sliderDot);
             }
-            // Save Canvas State for undo and Redo
-            sf::Texture screenshotTexture;
-            screenshotTexture.create(getWindowReference().getSize().x, getWindowReference().getSize().y);
-            screenshotTexture.update(getWindowReference());
-            sf::Sprite screenshot;
-            screenshot.setTexture(screenshotTexture);
-            redoUndoVector.push_back(screenshot);
-        }
-        // Rendering
-        window.display(); // So that changes made to window in tool can be seen.
-        window.clear();
-        window.draw(canvas);
-        window.draw(toolbar);
-        for (Button* i : allButtons) {
-            i->draw(window);
-        }
-
-        // Display the Current Canvas Color
-        sf::RectangleShape colorPreview;
-        colorPreview.setSize(sf::Vector2f(100, 100)); // Set preview size
-        colorPreview.setPosition(315.0f, 595.0f); // Position below the sliders
-        colorPreview.setFillColor(currentColor); // Update the color preview
-        window.draw(colorPreview);
-
-        // Draw the Slider Dots
-        for (int i = 0; i < 4; i++) {
-            sliderDot.setPosition(allSliderPos[i] + 30.0f, 605.f + (40 * i));
-            window.draw(sliderDot);
         }
     }
-
-
 }
 
 void Game::setTool(Tool* newTool)
@@ -254,19 +258,25 @@ void Game::displayInfo() const
 
     cout << "SystemTime: " << timestamp << endl;
     cout << "CursorPos..........| x" << cursorPosition.x << " y" << cursorPosition.y << endl;
-    cout << "CursorCanvasPos....| x" << cursorCanvasPosition.x << " y" << cursorCanvasPosition.y << endl << endl;
+    cout << "CursorCanvasPos....| x" << cursorCanvasPosition.x << " y" << cursorCanvasPosition.y << endl;
+    cout << endl;
     cout << "BurshSize..........| "  << brushSize << endl;
     cout << "BrushColor.........| r" << static_cast<float>(color.r) << endl;
     cout << "           ........| g" << static_cast<float>(color.g) << endl;
     cout << "            .......| b" << static_cast<float>(color.b) << endl;
-    cout << "             ......| a" << static_cast<float>(color.a) << endl << endl;
+    cout << "             ......| a" << static_cast<float>(color.a) << endl;
+    cout << endl;
     cout << "LastButtonPressed..| " << endl; // print here at 11,22 in the button click functions
     cout << "LastButtonReleased.| " << endl; // print here at 12,22 in the button release funtions
-    cout << "NumberofButtons....| " << getButtonCount() << endl << endl;
+    cout << "NumberofButtons....| " << getButtonCount() << endl;
+    cout << endl;
     cout << "LastSaveTime.......| " << endl; // print here at 15,22
-    cout << "TimesSaved.........| " << timesSaved << endl << endl; // print here at 16,22
+    cout << "TimesSaved.........| " << timesSaved << endl; // print here at 16,22
+    cout << endl;
     cout << "WindowW............| " << endl; // print here at 18,22
     cout << "WindowH............| " << endl; // print here at 19,22
+    cout << endl;
+    cout << "CanvasStatesSaved..| " << getCanvasStatesSaved();
 }
 
 sf::Vector2f Game::getCursorPos_Vector2f() const
@@ -279,9 +289,23 @@ sf::Vector2f Game::getCursorCanvasPos_Vector2f() const
     return this->cursorCanvasPosition;
 }
 
-sf::Sprite Game::setCanvas(sf::Sprite newCanvas)
+sf::Sprite& Game::getCanvas()
 {
-    return canvas = newCanvas;
+    return this->canvas;
+}
+
+void Game::setCanvas(sf::Sprite newCanvas)
+{
+    this->canvas = newCanvas;
+}
+
+int Game::getCanvasStatesSaved() const
+{
+    int count = 0;
+    for (auto i : redoUndoVector) {
+        count++;
+    }
+    return count;
 }
 
 void Game::incramentSaveCounter()
@@ -305,10 +329,13 @@ void saveButtonHold(Game& masterGame) {
 void saveButtonRelease(Game& masterGame) {
 
     // Capture Canvas and Save to file
-    sf::Texture screenshotTexture;
+    /*sf::Texture screenshotTexture;
     screenshotTexture.create(masterGame.getWindowReference().getSize().x, masterGame.getWindowReference().getSize().y);
-    screenshotTexture.update(masterGame.getWindowReference());
-    sf::Image screenshot = screenshotTexture.copyToImage();
+    screenshotTexture.update(masterGame.getWindowReference());*/
+    // Under the grace our Lord and Savior Ethan Goode, he has figured out how
+    // to take screenshots on the canvas only rather than the entire window
+    // using the getCanvas() func which returns a reference
+    sf::Image screenshot = masterGame.getCanvas().getTexture()->copyToImage();
     std::time_t now = std::time(nullptr);
     struct tm buf;
     localtime_s(&buf, &now);
@@ -319,7 +346,7 @@ void saveButtonRelease(Game& masterGame) {
 
     // incrament counter & Write Save Time Stamp
     masterGame.incramentSaveCounter();
-    ANSI::AbsMoveCursorRowCol(14, 21);
+    ANSI::AbsMoveCursorRowCol(15, 21);
     std::strftime(timestamp, sizeof(timestamp), "%Y/%m/%d-%H:%M:%S", &buf);
     cout << timestamp;
 
@@ -392,25 +419,35 @@ void undoButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "UNDO";
 
+    // Go to last board state (no redo so use wisely)
+    if (!masterGame.redoUndoVector.empty()) {
+        masterGame.setCanvas(masterGame.redoUndoVector.back());
+        masterGame.redoUndoVector.pop_back();
+        cout << "UNDO " << masterGame.getCanvasStatesSaved();
+    }
+    else {
+        cout << "UNDO (EMPTY)";
+    }
+
+
+    // Silly spin animation
+    float buttonSize = masterGame.allButtons[3]->getIcon().getSize().x;
+    masterGame.allButtons[3]->getIcon().setOrigin(buttonSize / 2, buttonSize / 2);
+    
     // change texture to pressed
     masterGame.allButtons[3]->animatePress(PRESS);
+
 }
 void undoButtonHold(Game& mastergame) {
+
+    mastergame.allButtons[3]->getIcon().rotate(1);
 }
+
 void undoButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
-    cout << "UNDO";
-
-    // Go to last board state (no redo so use wisely)
-    if (!masterGame.redoUndoVector.empty()) {
-        masterGame.redoUndoVector.back().setOrigin(-424, 0);
-        masterGame.setCanvas(masterGame.redoUndoVector.back());
-        masterGame.redoUndoVector.pop_back();
-    }
 
     // change texture to UnPressed
     masterGame.allButtons[3]->animatePress(RELEASE);
@@ -586,7 +623,7 @@ void redSliderButtonClick(Game& masterGame) {
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.r = static_cast<sf::Uint8>(normalized * 255);
-        std::cout << "Red Value: " << static_cast<int>(masterGame.currentColor.r) << std::endl;
+        //std::cout << "Red Value: " << static_cast<int>(masterGame.currentColor.r) << std::endl;
         masterGame.allSliderPos[0] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
@@ -609,7 +646,7 @@ void greenSliderButtonClick(Game& masterGame) {
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.g = static_cast<sf::Uint8>(normalized * 255);
-        std::cout << "Green Value: " << static_cast<int>(masterGame.currentColor.g) << std::endl;
+        //std::cout << "Green Value: " << static_cast<int>(masterGame.currentColor.g) << std::endl;
         masterGame.allSliderPos[1] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
@@ -633,7 +670,7 @@ void blueSliderButtonClick(Game& masterGame) {
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.b = static_cast<sf::Uint8>(normalized * 255);
-        std::cout << "Blue Value: " << static_cast<int>(masterGame.currentColor.b) << std::endl;
+        //std::cout << "Blue Value: " << static_cast<int>(masterGame.currentColor.b) << std::endl;
         masterGame.allSliderPos[2] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
@@ -656,7 +693,7 @@ void alphaSliderButtonClick(Game& masterGame) {
     if (mousePos.x >= xMin && mousePos.x <= xMax) {
         float normalized = (mousePos.x - xMin) / (xMax - xMin);
         masterGame.currentColor.a = static_cast<sf::Uint8>(normalized * 255);
-        std::cout << "Alpha Value: " << static_cast<int>(masterGame.currentColor.a) << std::endl;
+        //std::cout << "Alpha Value: " << static_cast<int>(masterGame.currentColor.a) << std::endl;
         masterGame.allSliderPos[3] = masterGame.getCursorPos_Vector2f().x - 30.0f; // Adjust the dot for the slider
     }
     masterGame.setTool(new PencilTool());
@@ -694,6 +731,8 @@ void initializeButtons(Game& masterGame)
             buttons to change their textures and make it easier to add different button types.
     
     */
+    float rowFactor = 132;
+    float colFactor = 132;
 
     //BASIC BUTTONS
     Button* save = new Button("save","Buttons/save.png","Buttons/savePressed.png", 118.0f, 785.0f, 210.0f, 100.0f, saveButtonClick, saveButtonHold, saveButtonRelease);
@@ -734,6 +773,7 @@ void initializeButtons(Game& masterGame)
 
     Button* alphaSlider = new Button("alphaSldier", "Buttons/alphaSlider.png", "Buttons/alphaSliderPressed.png", 30.0f, 720.0f, 255.0f, 10.0f, alphaSliderButtonClick, alphaSliderButtonHold, alphaSliderButtonRelease);
     masterGame.addButton(alphaSlider);
+
     //PRESSED BUTTONS
 }
 

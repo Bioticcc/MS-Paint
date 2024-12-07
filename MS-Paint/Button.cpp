@@ -62,7 +62,7 @@ float Button::getPosY() { return posY; }
 
 std::string Button::getName() const { return name; }
 
-sf::RectangleShape Button::getIcon() { return buttonShape; }
+sf::RectangleShape& Button::getIcon() { return buttonShape; }
 
 void Button::setPos(float x, float y) {
 	posX = x;
