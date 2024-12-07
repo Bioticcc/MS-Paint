@@ -175,27 +175,85 @@ void Game::setTool(Tool* newTool)
 void Game::updateTool(void) {
     currentTool.get()->toolUpdate(*this);
 }
-
+/*
+Programmed by: Bioticcc
+    Edited by: Inventor4life
+               FloatingToa5t
+               david_ac_leon
+function:
+    Game::addButton(Button* newButton)
+description:
+    Calls the relevant tool toolUpdate function.
+    Should be called whenever an important value is changed (color, size) (etc...)
+parameters:
+    None
+returns:
+    None
+*/
 void Game::addButton(Button* newButton)
 {
     allButtons.push_back(newButton);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getWindowReference
+// Parameters: None
+// Return Values: sf::RenderWindow& - reference to the game's main window
+// Description:
+// Returns a reference to the main SFML window.
+//
 sf::RenderWindow& Game::getWindowReference(void)
 {
     return this->window;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: drawToCanvas
+// Parameters: sf::Shape& toStamp
+// Return Values: None
+// Description:
+// Draws a given shape onto the canvas' render texture and updates the canvas sprite.
+//
 void Game::drawToCanvas(sf::Shape& toStamp) {
     canvasRenderTexture.draw(toStamp);
     canvas.setTexture(canvasRenderTexture.getTexture());
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getColor
+// Parameters: None
+// Return Values: sf::Color - the current selected color
+// Description:
+// Returns the currently selected drawing color.
+//
 sf::Color Game::getColor() const
 {
     return currentColor;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getButtonCount
+// Parameters: None
+// Return Values: int - the number of buttons in allButtons vector
+// Description:
+// Returns how many buttons have been added to the game.
+//
 int Game::getButtonCount() const
 {
     int buttonCount = 0;
@@ -204,7 +262,19 @@ int Game::getButtonCount() const
     }
     return buttonCount;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: displayInfo
+// Parameters: None
+// Return Values: None
+// Description:
+// Prints debug information to the terminal using ANSI escape codes,
+// including cursor positions, brush size, color, and window size.
+//
 void Game::displayInfo() const
 {
     /* EXAMPLE INFO DISPLAY
@@ -278,27 +348,82 @@ void Game::displayInfo() const
     cout << endl;
     cout << "CanvasStatesSaved..| " << getCanvasStatesSaved();
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getCursorPos_Vector2f
+// Parameters: None
+// Return Values: sf::Vector2f - current cursor position relative to window
+// Description:
+// Returns the current cursor position in window coordinates.
+//
 sf::Vector2f Game::getCursorPos_Vector2f() const
 {
     return this->cursorPosition;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getCursorCanvasPos_Vector2f
+// Parameters: None
+// Return Values: sf::Vector2f - current cursor position relative to the canvas
+// Description:
+// Returns the current cursor position mapped onto the canvas space.
+//
 sf::Vector2f Game::getCursorCanvasPos_Vector2f() const
 {
     return this->cursorCanvasPosition;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getCanvas
+// Parameters: None
+// Return Values: sf::Sprite& - reference to the current canvas sprite
+// Description:
+// Returns a reference to the current canvas sprite.
+//
 sf::Sprite& Game::getCanvas()
 {
     return this->canvas;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: setCanvas
+// Parameters: sf::Sprite newCanvas
+// Return Values: None
+// Description:
+// Updates the current canvas sprite with a new sprite.
+//
 void Game::setCanvas(sf::Sprite newCanvas)
 {
     this->canvas = newCanvas;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: getCanvasStatesSaved
+// Parameters: None
+// Return Values: int - number of saved canvas states
+// Description:
+// Returns how many states of the canvas are stored for undo functionality.
+//
 int Game::getCanvasStatesSaved() const
 {
     int count = 0;
@@ -307,7 +432,18 @@ int Game::getCanvasStatesSaved() const
     }
     return count;
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: incramentSaveCounter
+// Parameters: None
+// Return Values: None
+// Description:
+// Increments the timesSaved counter each time a drawing is saved.
+//
 void Game::incramentSaveCounter()
 {
     timesSaved++;
@@ -344,7 +480,17 @@ void Game::updateSliders()
     /*move blue slider*/	allSliderPos[2] = pColor.b - offset;
     /*move alpha slider*/	allSliderPos[3] = pColor.a - offset;
 }
-
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: saveButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Called when the save button is clicked. Animates the button and prints info to the console.
+//
 void saveButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
@@ -356,10 +502,32 @@ void saveButtonClick(Game& masterGame) {
     //animate button
     masterGame.allButtons[0]->animatePress(PRESS);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: saveButtonHold
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Called each frame the save button is held. Currently does nothing.
+//
 void saveButtonHold(Game& masterGame) {
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: saveButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release of save button, saves the current canvas to a file and updates timestamp.
+//
 void saveButtonRelease(Game& masterGame) {
 
     // Capture Canvas and Save to file
@@ -399,7 +567,18 @@ void pencilButtonClick(Game& masterGame) {
 }
 void pencilButtonHold(Game& mastergame) {
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: undoButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On clicking undo, revert to the last canvas state if available, and animate the button.
+//
 void pencilButtonRelease(Game& masterGame) {
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
@@ -474,7 +653,18 @@ void undoButtonHold(Game& mastergame) {
 
     //mastergame.allButtons[3]->getIcon().rotate(1);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: undoButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release of the undo button, updates info and reverts button texture.
+//
 void undoButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
@@ -483,7 +673,18 @@ void undoButtonRelease(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[3]->animatePress(RELEASE);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: clearCanvasButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Clears the entire canvas when this button is clicked.
+//
 //==========clearCanvas==========
 void clearCanvasButtonClick(Game& masterGame) {
     // print button on info screen
@@ -501,7 +702,18 @@ void clearCanvasButtonClick(Game& masterGame) {
 }
 void clearCanvasButtonHold(Game& mastergame) {
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: clearCanvasButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release of the clear canvas button, updates info and resets button texture.
+//
 void clearCanvasButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
@@ -511,7 +723,18 @@ void clearCanvasButtonRelease(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[4]->animatePress(RELEASE);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: eraserButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Switches the tool to EraserTool and updates display.
+//
 //==========default eraser==========
 void eraserButtonClick(Game& masterGame) {
     // print button on info screen
@@ -527,7 +750,18 @@ void eraserButtonClick(Game& masterGame) {
 }
 void eraserButtonHold(Game& masterGame) {
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: eraserButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release of the eraser button, updates info and reverts texture.
+//
 void eraserButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
@@ -537,7 +771,18 @@ void eraserButtonRelease(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[5]->animatePress(RELEASE);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: sizeIncreaseButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Increases brush size slightly on click and updates the tool.
+//
 //==========default brush size increase==========
 void sizeIncreaseButtonClick(Game& masterGame) {
     // print button on info screen
@@ -551,6 +796,18 @@ void sizeIncreaseButtonClick(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[6]->animatePress(PRESS);
 }
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: sizeIncreaseButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release, updates info and reverts texture of size increase button.
+//
 void sizeIncreaseButtonHold(Game& masterGame) {
     masterGame.brushSize += .2;
     masterGame.updateTool();
@@ -565,6 +822,18 @@ void sizeIncreaseButtonHold(Game& masterGame) {
     sizeIndicator.setOrigin(sizeIndicator.getRadius(), sizeIndicator.getRadius());
     masterGame.getWindowReference().draw(sizeIndicator);
 }
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: sizeDecreaseButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Decreases brush size on click if above minimum.
+//
 void sizeIncreaseButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
@@ -574,7 +843,18 @@ void sizeIncreaseButtonRelease(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[6]->animatePress(RELEASE);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: sizeDecreaseButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release, updates info and restores texture for size decrease button.
+//
 //==========efault brush size decrease==========
 void sizeDecreaseButtonClick(Game& masterGame) {
     // print button on info screen
@@ -590,6 +870,7 @@ void sizeDecreaseButtonClick(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[7]->animatePress(PRESS);
 }
+
 void sizeDecreaseButtonHold(Game& masterGame) {
     if (masterGame.brushSize > MIN_BRUSH_SIZE) {
         masterGame.brushSize -= 0.2f;
@@ -618,7 +899,18 @@ void sizeDecreaseButtonRelease(Game& masterGame) {
     // change texture to UnPressed
     masterGame.allButtons[7]->animatePress(RELEASE);
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: sizeEyeDropperButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Switches the tool to the EyeDropper to pick colors from the canvas.
+//
 //==========Eye Droppper Tool==========
 void sizeEyeDropperButtonClick(Game& masterGame) {
     // print button on info screen
@@ -635,6 +927,18 @@ void sizeEyeDropperButtonClick(Game& masterGame) {
 void sizeEyeDropperButtonHold(Game& masterGame) {
 
 }
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: sizeEyeDropperButtonRelease
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// On release, updates info and restores EyeDropper button texture.
+//
 void sizeEyeDropperButtonRelease(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(12, 21);
@@ -645,7 +949,18 @@ void sizeEyeDropperButtonRelease(Game& masterGame) {
     masterGame.allButtons[8]->animatePress(RELEASE);
     
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: redSliderButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Sets the red component of the current color based on slider click position.
+//
 //==========Red Slider Tool==========
 void redSliderButtonClick(Game& masterGame) {
     // Handle red slider click logic
@@ -668,7 +983,18 @@ void redSliderButtonHold(Game& masterGame) {
 void redSliderButtonRelease(Game& masterGame) {
     // Nothing extra needed for release
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: greenSliderButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Adjusts the green component of the current color using the slider position.
+//
 //==========Green Slider Tool==========
 void greenSliderButtonClick(Game& masterGame) {
     // Handle green slider click logic
@@ -692,7 +1018,18 @@ void greenSliderButtonRelease(Game& masterGame) {
     // Nothing extra needed for release
 }
 
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: blueSliderButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Updates the blue component of the current color based on slider interaction.
+//
 //==========Blue Slider Tool==========
 void blueSliderButtonClick(Game& masterGame) {
     // Handle blue slider click logic
@@ -715,7 +1052,18 @@ void blueSliderButtonHold(Game& masterGame) {
 void blueSliderButtonRelease(Game& masterGame) {
     // Nothing extra needed for release
 }
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Function: alphaSliderButtonClick
+// Parameters: Game& masterGame
+// Return Values: None
+// Description:
+// Adjusts the alpha (transparency) of the current color based on the slider position.
+//
 //==========Alpha Slider Tool==========
 void alphaSliderButtonClick(Game& masterGame) {
     // Handle alpha slider click logic
