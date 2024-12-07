@@ -59,8 +59,7 @@
               "ViewState": "AQIAAA8AAAAAAAAAAAAAAB8AAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-25T06:46:20.23Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -96,8 +95,7 @@
               "RelativeToolTip": "basic_tools.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-02T19:49:03.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T19:49:03.745Z"
             },
             {
               "$type": "Document",
@@ -165,8 +163,7 @@
               "RelativeToolTip": "basic_tools.cpp",
               "ViewState": "AQIAAD8AAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-02T19:49:08.535Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T19:49:08.535Z"
             },
             {
               "$type": "Document",
@@ -178,8 +175,7 @@
               "RelativeToolTip": "Game.cpp",
               "ViewState": "AQIAAAkBAAAAAAAAAAAEwB4BAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-02T05:28:38.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T05:28:38.794Z"
             },
             {
               "$type": "Document",
