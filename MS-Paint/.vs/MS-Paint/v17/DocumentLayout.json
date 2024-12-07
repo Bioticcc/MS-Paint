@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\basic_tools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:basic_tools.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|solutionrelative:Tool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A399850D-941B-4DB7-AF02-5CE7A525C6B7}|MS-Paint.vcxproj|C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Buttons.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -46,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 168,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.h",
               "RelativeDocumentMoniker": "Game.h",
@@ -64,11 +64,31 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "basic_tools.h",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\basic_tools.h",
               "RelativeDocumentMoniker": "basic_tools.h",
@@ -81,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Tool.h",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Tool.h",
               "RelativeDocumentMoniker": "Tool.h",
@@ -89,18 +109,17 @@
               "RelativeToolTip": "Tool.h",
               "ViewState": "AQIAABsAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-02T05:26:48.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T05:26:48.308Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Button.h",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.h",
               "RelativeDocumentMoniker": "Button.h",
               "ToolTip": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.h",
               "RelativeToolTip": "Button.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-19T23:30:53.846Z",
               "EditorCaption": ""
@@ -109,7 +128,7 @@
         },
         {
           "DockedWidth": 232,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -121,25 +140,24 @@
               "RelativeToolTip": "Buttons.txt",
               "ViewState": "AQIAABUAAAAAAAAAAAAAABUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-12-02T23:27:53.492Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T23:27:53.492Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Button.cpp",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.cpp",
               "RelativeDocumentMoniker": "Button.cpp",
               "ToolTip": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Button.cpp",
               "RelativeToolTip": "Button.cpp",
-              "ViewState": "AQIAAFgAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-02T18:59:23.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "basic_tools.cpp",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\basic_tools.cpp",
               "RelativeDocumentMoniker": "basic_tools.cpp",
@@ -152,12 +170,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.cpp",
               "RelativeDocumentMoniker": "Game.cpp",
-              "ToolTip": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.cpp*",
-              "RelativeToolTip": "Game.cpp*",
+              "ToolTip": "C:\\Users\\jeezu\\Documents\\GitHub\\MS-Paint\\MS-Paint\\Game.cpp",
+              "RelativeToolTip": "Game.cpp",
               "ViewState": "AQIAAAkBAAAAAAAAAAAEwB4BAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-02T05:28:38.794Z",

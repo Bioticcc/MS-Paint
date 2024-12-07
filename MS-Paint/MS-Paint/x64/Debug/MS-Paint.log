@@ -1,4 +1,8 @@
-﻿  Game.cpp
-C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Game.cpp(270,31): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Game.cpp(296,36): warning C4305: '-=': truncation from 'double' to 'float'
+﻿  basic_tools.cpp
+  Button.cpp
+  Game.cpp
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Game.cpp(270,29): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\Game.cpp(296,33): warning C4305: '-=': truncation from 'double' to 'float'
+  main.cpp
+  Generating Code...
   MS-Paint.vcxproj -> C:\Users\jeezu\Documents\GitHub\MS-Paint\MS-Paint\x64\Debug\MS-Paint.exe

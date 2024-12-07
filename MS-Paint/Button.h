@@ -7,7 +7,17 @@
 #include <iostream>
 #include <functional>
 #include <vector> 
-
+// Programmed by Bioticcc
+//  Edited by Inventor4life
+//            FloatingToa5t
+//            david_ac_leon    
+//
+// Assignment: PA 9
+// File: Button.h
+// Description:
+//  The button class header. contains function definitons for the button class,
+//	and variables stored within the function
+//
 // Not sure if this should be abstract or use function ptrs...
 class Button
 {
