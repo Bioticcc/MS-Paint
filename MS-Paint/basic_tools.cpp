@@ -192,7 +192,11 @@ void PencilTool::mouseMotion(Game& currentGame, const sf::Vector2f mousePosition
 // mousePosition = cursorCanvasPosition (relative to canvas)
 void PencilTool::mouseUp(Game& currentGame, const sf::Vector2f mousePosition)
 {
+}
 
+sf::CircleShape PencilTool::getDot()
+{
+	return dot;
 }
 
 EyeDropper::~EyeDropper()
@@ -240,4 +244,10 @@ void EyeDropper::mouseMotion(Game& currentGame, const sf::Vector2f mousePosition
 void EyeDropper::mouseUp(Game& currentGame, const sf::Vector2f mousePosition)
 {
 	currentGame.setTool(new PencilTool());
+	sf::Color pColor = currentGame.currentColor;
+	float offset = 00.0f;
+	/*move red slider*/		currentGame.allSliderPos[0] = pColor.r - offset;
+	/*move green slider*/	currentGame.allSliderPos[1] = pColor.g - offset;
+	/*move blue slider*/	currentGame.allSliderPos[2] = pColor.b - offset;
+	/*move alpha slider*/	currentGame.allSliderPos[3] = pColor.a - offset;
 }

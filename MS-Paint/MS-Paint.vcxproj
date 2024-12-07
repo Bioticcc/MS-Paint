@@ -168,7 +168,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="testCases.cpp" />
+    <ClCompile Include="TestCases.cpp" />
     <ClCompile Include="TestCases.h" />
   </ItemGroup>
   <ItemGroup>

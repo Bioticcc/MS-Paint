@@ -1,32 +1,22 @@
-// Programmed by Bioticcc
-// Edited by Inventor4life
-// FloatingToa5t
-// david_ac_leon
-//
-// Assignment: PA9
-// File: main.cpp
-// Description:
-// Entry point of the application. Creates a Game instance and runs it.
-//
-#include "Game.h"
+//#include "Header.h"
 #include "TestCases.h"
+#include "Game.h"
 
-//
-// Programmed by Bioticcc
-// Edited by Inventor4life
-// FloatingToa5t
-// david_ac_leon
-//
-// Function: main
-// Parameters: None
-// Return Values: int - exit code (0 for success)
-// Description:
-// Initializes and runs the Game application.
-//
 int main(void) {
 
-	//Game G;
-	//G.runGame();
-	TestCases T;
+	/*TestCases T;
+	T.testSave();
 	T.testPickTool();
+	T.testDraw();
+	T.testChangeColor();
+	T.testAddButton();
+	
+	std::cout << std::endl << std::endl;
+	std::cout << "!!!!Make Sure to Click into the Window!!!!" << std::endl;
+	std::cout << "PRESS ANY KEY TO CONTINUE...";
+	system("pause > nul");
+	system("cls");*/
+
+	Game G;
+	G.runGame();
 }

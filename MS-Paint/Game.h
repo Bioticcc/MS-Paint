@@ -45,7 +45,7 @@ private:
     int resX;
     int resY;
 
-    std::string windowName = "BHP: Big Hard Paint";
+    std::string windowName = "BHL: Big Hard LEAD";
     sf::RenderWindow window;
 
     sf::Event event;
@@ -64,11 +64,12 @@ private:
     int timesSaved;
     friend TestCases;
 public:
+    // this is bad practice, though making setters and
+    // getters for some of these caused some major issues
     std::vector<Button*> allButtons;
     sf::Color currentColor;
     std::vector<float> allSliderPos;
     std::vector<sf::Sprite> redoUndoVector;
-
     float brushSize = 5;
 
     Game();
@@ -97,7 +98,9 @@ public:
     int getCanvasStatesSaved() const;
     void incramentSaveCounter();
 
+    bool saveCanvasToFile();
 
+    void updateSliders();
 };
 
 #include "basic_tools.h" // F***** up 6OD9^MN circular inheritance weird SH|T. Won't compile without this line
