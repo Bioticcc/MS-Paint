@@ -12,6 +12,7 @@ TestCases::~TestCases()
 {
 }
 
+////////////////////////////////////////////////////////////////
 // Programmed by FloatingToa5t
 //  Edited by Inventor4life
 //            david_ac_leon
@@ -24,6 +25,7 @@ TestCases::~TestCases()
 //				by looking at the bool returned
 // Application is only launched in:
 //      main.cpp
+////////////////////////////////////////////////////////////////
 void TestCases::testSave()
 {
 	Game G;
@@ -37,6 +39,7 @@ void TestCases::testSave()
 	}
 }
 
+////////////////////////////////////////////////////////////////
 // Programmed by FloatingToa5t
 //  Edited by Inventor4life
 //            david_ac_leon
@@ -50,6 +53,7 @@ void TestCases::testSave()
 //				currentTool member is indeed allocated
 // Application is only launched in:
 //      main.cpp
+////////////////////////////////////////////////////////////////
 void TestCases::testPickTool()
 {
 	Game G;
@@ -64,6 +68,7 @@ void TestCases::testPickTool()
 	}
 }
 
+////////////////////////////////////////////////////////////////
 // Programmed by FloatingToa5t
 //  Edited by Inventor4life
 //            david_ac_leon
@@ -79,6 +84,7 @@ void TestCases::testPickTool()
 //				indeed black.
 // Application is only launched in:
 //      main.cpp
+////////////////////////////////////////////////////////////////
 void TestCases::testDraw()
 {
 	Game G; // canvas is white
@@ -97,6 +103,7 @@ void TestCases::testDraw()
 	}
 }
 
+////////////////////////////////////////////////////////////////
 // Programmed by FloatingToa5t
 //  Edited by Inventor4life
 //            david_ac_leon
@@ -109,6 +116,7 @@ void TestCases::testDraw()
 //				checks if the member was changed to that new color
 // Application is only launched in:
 //      main.cpp
+////////////////////////////////////////////////////////////////
 void TestCases::testChangeColor()
 {
 	Game G;
@@ -121,6 +129,7 @@ void TestCases::testChangeColor()
 	}
 }
 
+////////////////////////////////////////////////////////////////
 // Programmed by FloatingToa5t
 //  Edited by Inventor4life
 //            david_ac_leon
@@ -136,6 +145,7 @@ void TestCases::testChangeColor()
 //				recent element is the test button, its a success
 // Application is only launched in:
 //      main.cpp
+////////////////////////////////////////////////////////////////
 void TestCases::testAddButton()
 {
 	Game G;

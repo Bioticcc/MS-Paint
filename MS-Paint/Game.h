@@ -22,7 +22,7 @@ private:
     int resX;
     int resY;
 
-    std::string windowName = "BHP: Big Hard Paint";
+    std::string windowName = "BHL: Big Hard LEAD";
     sf::RenderWindow window;
 
     sf::Event event;
@@ -76,6 +76,8 @@ public:
     void incramentSaveCounter();
 
     bool saveCanvasToFile();
+
+    void updateSliders();
 };
 
 #include "basic_tools.h" // F***** up 6OD9^MN circular inheritance weird SH|T

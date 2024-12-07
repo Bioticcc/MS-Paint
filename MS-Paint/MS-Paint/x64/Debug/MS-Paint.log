@@ -1,10 +1,5 @@
-﻿  Game.cpp
+﻿  main.cpp
 C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\Button.h(11,14): warning C4091: 'typedef ': ignored on left of 'CLICKSTATE' when no variable is declared
-  (compiling source file 'Game.cpp')
+  (compiling source file 'main.cpp')
   
-C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\ANSIescapeCode.h(6,14): warning C4091: 'typedef ': ignored on left of 'EraseInLineMode' when no variable is declared
-  (compiling source file 'Game.cpp')
-  
-C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\Game.cpp(51,50): warning C4244: 'argument': conversion from 'float' to 'size_t', possible loss of data
-C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\Game.cpp(538,29): warning C4305: '+=': truncation from 'double' to 'float'
   MS-Paint.vcxproj -> C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\x64\Debug\MS-Paint.exe

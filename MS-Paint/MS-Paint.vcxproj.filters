@@ -30,7 +30,7 @@
     <ClCompile Include="TestCases.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="testCases.cpp">
+    <ClCompile Include="TestCases.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

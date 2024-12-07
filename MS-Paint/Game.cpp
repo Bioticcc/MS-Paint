@@ -334,6 +334,17 @@ bool Game::saveCanvasToFile()
     return screenshot.saveToFile(filename);
 }
 
+void Game::updateSliders()
+{
+    setTool(new PencilTool());
+    sf::Color pColor = currentColor;
+    float offset = 00.0f;
+    /*move red slider*/		allSliderPos[0] = pColor.r - offset;
+    /*move green slider*/	allSliderPos[1] = pColor.g - offset;
+    /*move blue slider*/	allSliderPos[2] = pColor.b - offset;
+    /*move alpha slider*/	allSliderPos[3] = pColor.a - offset;
+}
+
 void saveButtonClick(Game& masterGame) {
     // print button on info screen
     ANSI::AbsMoveCursorRowCol(11, 21);
@@ -378,6 +389,8 @@ void pencilButtonClick(Game& masterGame) {
     masterGame.currentColor = sf::Color::Black;
     masterGame.setTool(new PencilTool());
 
+    masterGame.updateSliders();
+
     // animate press
     masterGame.allButtons[1]->animatePress(PRESS);
     // MAKE SURE THE ELEME^NT HERE MATCHES IN THE ORDER IT WAS ADDED TO THE VECTOR
@@ -392,6 +405,7 @@ void pencilButtonRelease(Game& masterGame) {
     ANSI::EraseInLine(RIGHT);
     cout << "BLACK PENCIL";
 
+
     // change texture to UnPressed
     masterGame.allButtons[1]->animatePress(RELEASE);
 }
@@ -403,9 +417,11 @@ void pencilRedButtonClick(Game& masterGame) {
     ANSI::EraseInLine(RIGHT);
     cout << "RED PENCIL";
 
-    // change color to black
+    // change color to red
     masterGame.currentColor = sf::Color::Red;
     masterGame.setTool(new PencilTool());
+
+    masterGame.updateSliders();
 
     // change texture to pressed
     masterGame.allButtons[2]->animatePress(PRESS);
@@ -418,6 +434,7 @@ void pencilRedButtonRelease(Game& masterGame) {
     ANSI::AbsMoveCursorRowCol(12, 21);
     ANSI::EraseInLine(RIGHT);
     cout << "RED PENCIL";
+
 
     // change texture to UnPressed
     masterGame.allButtons[2]->animatePress(RELEASE);
