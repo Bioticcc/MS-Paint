@@ -1,3 +1,14 @@
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Assignment: PA9
+// File: Tool.h
+// Description:
+// Defines an abstract base Tool class. Tools respond to selection/deselection, 
+// updates, and mouse events (down, drag, motion, up) to interact with the canvas.
+//
 #pragma once
 
 #ifndef TOOL_H
@@ -31,6 +42,19 @@ Programmed by: Inventor4life
 		This will allow us to write less code for similar brushes, and not deal with 
 		 abstract bullshittery.
 */
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Class: Tool
+// Parameters: None
+// Return Values: None (class definition)
+// Description:
+// Abstract class for all drawing tools. Derived classes implement 
+// how the tool responds to mouse input and how it affects the canvas.
+//
 class Tool
 {
 public:

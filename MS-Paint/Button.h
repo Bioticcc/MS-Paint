@@ -1,7 +1,17 @@
 #pragma once
 #ifndef BUTTON_H
 #define BUTTON_H
-
+// Programmed by Bioticcc
+//  Edited by Inventor4life
+//            FloatingToa5t
+//            david_ac_leon    
+//
+// Assignment: PA 9
+// File: Button.h
+// Description:
+//  The button class header. contains function definitons for the button class,
+//	and variables stored within the function
+//
 #include <SFML/Graphics.hpp>
 
 #include <iostream>

@@ -1,5 +1,0 @@
-﻿  main.cpp
-C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\Button.h(11,14): warning C4091: 'typedef ': ignored on left of 'CLICKSTATE' when no variable is declared
-  (compiling source file 'main.cpp')
-  
-  MS-Paint.vcxproj -> C:\Users\Zach Baker\Desktop\GitHub Repos\CPTS 122 - Duck Tape & Dreams\MS-Paint\MS-Paint\x64\Debug\MS-Paint.exe
