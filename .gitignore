@@ -17,11 +17,11 @@
 mono_crash.*
 
 # Build results
-[Dd]ebug/
+#[Dd]ebug/**
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
+#x64/**
 x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
@@ -31,6 +31,9 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+
+#unignore dlls
+!/MS-Paint/x64/Debug/*.dll
 
 #Un-Ignore everything in /lib
 !lib/**
