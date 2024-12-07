@@ -23,6 +23,17 @@ typedef enum CLICKSTATE {
 	RELEASE
 };
 // Not sure if this should be abstract or use function ptrs...
+
+//// Programmed by Bioticcc
+//  Edited by Inventor4life
+//            FloatingToa5t
+//            david_ac_leon    
+//
+//	Description:
+//	The button class! stores all the information related to a button, 
+//	for the purpose of encapsulation and ease of access. We have many button objects needed,
+//	so making a class for them seemed like the right way to go
+//
 class Button
 {
 private:

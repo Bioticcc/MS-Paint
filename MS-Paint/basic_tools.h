@@ -1,12 +1,35 @@
 #pragma once
 #ifndef BASIC_TOOLS_H
 #define BASIC_TOOLS_H
-
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Assignment: PA9
+// File: basic_tools.h
+// Description:
+// Declares various tool classes (SelectionTool, EraserTool, PencilTool, EyeDropper) 
+// which inherit from Tool and implement different canvas interactions.
+//
+//
 #define _USE_MATH_DEFINES
 #include <math.h>
 
 #include "Tool.h"
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Class: SelectionTool
+// Parameters: None
+// Return Values: None (class definition)
+// Description:
+// A tool that handles selecting elements on the canvas (currently minimal functionality).
+//
+//
 class SelectionTool : public Tool {
 public:
 	~SelectionTool() override;
@@ -21,7 +44,20 @@ public:
 	void mouseUp(class Game& currentGame, const sf::Vector2f mousePosition) override;
 };
 
-// Just a white pencil
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Class: EraserTool
+// Parameters: None
+// Return Values: None (class definition)
+// Description:
+// A tool that simulates an eraser by drawing white shapes over the canvas.
+// It changes the drawn pixels to appear erased.
+//
+//
 class EraserTool : public Tool {
 public:
 	~EraserTool() override;
@@ -41,7 +77,18 @@ private:
 	sf::CircleShape sizeIndicator;
 	sf::Vector2f lastPosition;
 };
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Class: PencilTool
+// Parameters: None
+// Return Values: None (class definition)
+// Description:
+// A tool that draws colored lines on the canvas, simulating a pencil stroke.
+//
 class PencilTool : public Tool {
 public:
 	~PencilTool() override;
@@ -62,7 +109,18 @@ private:
 	sf::CircleShape sizeIndicator; // Thin black circle outline for showing brush size.
 	sf::Vector2f lastPosition; // Used to determine where the rectangle should extend to.
 };
-
+//
+// Programmed by Bioticcc
+// Edited by Inventor4life
+// FloatingToa5t
+// david_ac_leon
+//
+// Class: EyeDropper
+// Parameters: None
+// Return Values: None (class definition)
+// Description:
+// A tool that picks a color from the canvas pixels under the cursor.
+//
 class EyeDropper : public Tool {
 public:
 	~EyeDropper() override;
